@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const SignupForm = ({ signup }) => {
-    const history = useHistory();
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         username: "",
         password: "",
@@ -14,10 +14,10 @@ const SignupForm = ({ signup }) => {
 
     async function handleSubmit(evt) {
         evt.preventDefault();
-        const result = await login(formData);
+        const result = await signup(formData);
         if (result.success) {
             // redirect to the homepage
-            history.push("/");
+            navigate("/");
         } else {
             setFormErrors(result.errors);
         }

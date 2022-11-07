@@ -44,17 +44,14 @@ function App() {
 
   /** App render */
   return (
-    <BrowserRouter>
-      <UserContext.Provider
-        value={{ currentUser }}
-      >
-        <div className="App">
-          <Navigation logout={logout} />
-          <QuizzlyRoutes signup={signup} login={login} />
-        </div>
-      </UserContext.Provider>
-    </BrowserRouter>
-
+    <UserContext.Provider
+      value={{ currentUser }}
+    >
+      <div className="App">
+        <Navigation logout={logout} />
+        <QuizzlyRoutes signup={signup} login={login} />
+      </div>
+    </UserContext.Provider>
   );
 }
 
