@@ -31,7 +31,7 @@ const SignupForm = ({ signup }) => {
     /** Render form */
     return (
         <form onSubmit={handleSubmit}>
-            <p>Under construction...</p>
+            <p>Sign up under construction...</p>
         </form>
     );
 }

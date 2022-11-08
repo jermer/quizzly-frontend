@@ -29,7 +29,7 @@ const LoginForm = ({ login }) => {
     /** Render form */
     return (
         <form onSubmit={handleSubmit}>
-            <p>Under construction...</p>
+            <p>Login under construction...</p>
         </form>
     );
 }
