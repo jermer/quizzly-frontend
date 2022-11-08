@@ -34,12 +34,12 @@ class QuizzlyApi {
     //     return res.user;
     //   }
 
-    //   /** Get companies (filtered by name if not undefined) */
+    /** Get quizzes (filtered by search term if not undefined) */
 
-    //   static async getCompanies(name) {
-    //     let res = await this.request("companies", { name });
-    //     return res.companies;
-    //   }
+    static async getQuizzes(searchTerm) {
+        let res = await this.request("quizzes", { searchTerm });
+        return res.quizzes;
+    }
 
     //   /** Get details on a company by handle. */
 
