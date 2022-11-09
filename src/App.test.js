@@ -10,13 +10,3 @@ it('renders without crashing', () => {
     </MemoryRouter>
   );
 });
-
-// snapshot test
-// it('matches snapshot', () => {
-//   const { asFragment } = render(
-//     <MemoryRouter>
-//       <App />
-//     </MemoryRouter>
-//   );
-//   expect(asFragment()).toMatchSnapshot();
-// });
