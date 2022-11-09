@@ -27,12 +27,12 @@ class QuizzlyApi {
 
     // Individual API routes
 
-    //   /** Get the current user. */
+    /** Get the current user. */
 
-    //   static async getCurrentUser(username) {
-    //     let res = await this.request(`users/${username}`);
-    //     return res.user;
-    //   }
+    static async getUser(username) {
+        let res = await this.request(`users/${username}`);
+        return res.user;
+    }
 
     /** Get quizzes (filtered by search term if not undefined) */
 

@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BrowserRouter } from 'react-router-dom';
+import jwt_decode from "jwt-decode";
 
 import './App.css';
 import UserContext from './auth/UserContext';
@@ -8,7 +9,7 @@ import QuizzlyApi from './api/api';
 import QuizzlyRoutes from './nav-routes/QuizzlyRoutes';
 import Navigation from './nav-routes/Navigation';
 
-const TOKEN_STORAGE_ID = "jobly-token"
+const TOKEN_STORAGE_ID = "quizzly-token";
 
 /** Quizzly App
  * 
@@ -16,23 +17,47 @@ const TOKEN_STORAGE_ID = "jobly-token"
 
 function App() {
 
+  const [infoLoaded, setInfoLoaded] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
   const [token, setToken] = useLocalStorage(TOKEN_STORAGE_ID);
 
+  useEffect(() => {
+
+    async function fetchUser() {
+      if (token) {
+        try {
+          let { username } = jwt_decode(token);
+          QuizzlyApi.token = token;
+          const user = await QuizzlyApi.getUser(username);
+          setCurrentUser(user);
+
+        } catch (err) {
+          console.error("Error loading user info.", err);
+          setCurrentUser(null);
+        }
+      }
+      setInfoLoaded(true);
+    }
+
+    setInfoLoaded(false);
+    fetchUser();
+  }, [token]);
+
   /** Handles site-wide signup */
-  async function signup({ signupData }) {
+  async function signup(signupData) {
 
   }
 
   /** Handles site-wide login */
-  async function login({ loginData }) {
+  async function login(loginData) {
     try {
-      let token = QuizzlyApi.login(loginData);
+      let token = await QuizzlyApi.login(loginData);
       setToken(token);
       return { success: true };
 
-    } catch (err) {
-      return { success: false, err }
+    } catch (errors) {
+      console.log("+++++", errors)
+      return { success: false, errors }
     }
   }
 

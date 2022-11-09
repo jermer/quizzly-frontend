@@ -33,8 +33,7 @@ const Navigation = ({ logout }) => {
                     </a>
                     <ul className="dropdown-menu">
                         <li><span className="dropdown-item-text">
-                            {/* {currentUser.username} */}
-                            USERNAME
+                            {currentUser.username}
                         </span></li>
                         <li><hr className="dropdown-divider" /></li>
                         <li className="dropdown-item">
@@ -77,8 +76,8 @@ const Navigation = ({ logout }) => {
             <Link className="navbar-brand" to="/">
                 Quizzly
             </Link>
-            {/* {currentUser ? loggedInNav() : loggedOutNav()} */}
-            {loggedInNav()}
+            {currentUser ? loggedInNav() : loggedOutNav()}
+            {/* {loggedInNav()} */}
         </nav>
     );
 }
