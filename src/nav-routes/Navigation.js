@@ -17,7 +17,7 @@ const Navigation = ({ logout }) => {
                     </NavLink>
                 </li>
                 <li className="nav-item mr-4">
-                    <NavLink className="nav-link" to="/library">
+                    <NavLink className="nav-link" to="/creator/library">
                         Library
                     </NavLink>
                 </li>

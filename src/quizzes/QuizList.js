@@ -5,15 +5,15 @@ import QuizCard from "./QuizCard";
 import QuizzlyApi from "../api/api";
 import SearchForm from "./SearchForm";
 
-const QuizList = () => {
+const QuizList = ({ filters }) => {
     const [quizzes, setQuizzes] = useState(null);
 
     useEffect(function getQuizzesOnMount() {
-        search();
+        search(filters);
     }, []);
 
-    async function search(name) {
-        let quizzes = await QuizzlyApi.getQuizzes(name);
+    async function search(filters) {
+        let quizzes = await QuizzlyApi.getQuizzes(filters);
         setQuizzes(quizzes);
     }
 

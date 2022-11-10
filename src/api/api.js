@@ -34,19 +34,19 @@ class QuizzlyApi {
         return res.user;
     }
 
-    /** Get quizzes (filtered by search term if not undefined) */
+    /** Get quizzes (with optional filters) */
 
-    static async getQuizzes(searchTerm) {
-        let res = await this.request("quizzes", { searchTerm });
+    static async getQuizzes(filters) {
+        let res = await this.request("quizzes", filters);
         return res.quizzes;
     }
 
-    //   /** Get details on a company by handle. */
+    /** Get details of a quiz by id. */
 
-    //   static async getCompany(handle) {
-    //     let res = await this.request(`companies/${handle}`);
-    //     return res.company;
-    //   }
+    static async getQuiz(id) {
+        let res = await this.request(`quizzes/${id}`);
+        return res.quiz;
+    }
 
     //   /** Get list of jobs (filtered by title if not undefined) */
 

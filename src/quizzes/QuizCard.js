@@ -4,7 +4,7 @@ import "./QuizCard.css";
 
 const QuizCard = ({ id, title, description }) => {
     return (
-        <Link className="QuizCard card" to={`/quizzes/${id}`}>
+        <Link className="QuizCard card" to={`/creator/${id}`}>
             <div className="card-body">
                 <h5 className="card-title">
                     {title}
