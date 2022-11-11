@@ -6,7 +6,7 @@ const QuestionForm = ({ question }) => {
         right_a: '',
         wrong_a1: '',
         wrong_a2: '',
-        wrong_a2: ''
+        wrong_a3: ''
     }
     const [formData, setFormData] = useState(INITIAL_FORM);
 

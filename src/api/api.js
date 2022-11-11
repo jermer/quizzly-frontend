@@ -48,6 +48,11 @@ class QuizzlyApi {
         return res.quiz;
     }
 
+    static async newQuestion(data) {
+        let res = await this.request("questions", data, "post");
+        return res.question;
+    }
+
     //   /** Get list of jobs (filtered by title if not undefined) */
 
     //   static async getJobs(title) {

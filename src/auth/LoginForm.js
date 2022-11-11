@@ -19,7 +19,6 @@ const LoginForm = ({ login }) => {
             // redirect to the homepage
             navigate("/");
         } else {
-            console.log(">>>>", result.errors);
             setFormErrors(result.errors);
         }
     };
@@ -85,10 +84,6 @@ const LoginForm = ({ login }) => {
                 </div>
             </div>
         </div>
-
-
-
-
     );
 }
 
