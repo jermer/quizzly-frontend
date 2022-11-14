@@ -34,6 +34,17 @@ class QuizzlyApi {
         return res.user;
     }
 
+    /** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+     * QUIZ ROUTES
+     */
+
+    /** Create a new quiz */
+
+    static async createQuiz(data) {
+        let res = await this.request("quizzes", data, "post");
+        return res.quiz;
+    }
+
     /** Get quizzes (with optional filters) */
 
     static async getQuizzes(filters) {
@@ -48,8 +59,28 @@ class QuizzlyApi {
         return res.quiz;
     }
 
-    static async newQuestion(data) {
+    /** Update quiz from data */
+
+    static async updateQuiz(id, data) {
+        let res = await this.request(`quizzes/${id}`, data, "patch");
+        return res.quiz;
+    }
+
+    /** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+     * QUESTION ROUTES
+     */
+
+    /** Create new question */
+
+    static async createQuestion(data) {
         let res = await this.request("questions", data, "post");
+        return res.question;
+    }
+
+    /** Update question from data */
+
+    static async updateQuestion(id, data) {
+        let res = await this.request(`questions/${id}`, data, "patch");
         return res.question;
     }
 

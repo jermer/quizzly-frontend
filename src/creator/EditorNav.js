@@ -2,18 +2,10 @@
 import QuizSettingsForm from "./QuizSettingsForm";
 import QuestionThumbnail from "./QuestionThumbnail";
 
-const EditorNav = ({ questionList, navClick, saveClick }) => {
+const EditorNav = ({ questionList, navClick }) => {
 
     return (
         <div>
-            <button
-                type="button"
-                className="btn btn-danger mb-2"
-                onClick={saveClick}
-            >
-                SAVE CHANGES
-            </button>
-
             {/* QUIZ SETTINGS BUTTON */}
             <button
                 type="button"

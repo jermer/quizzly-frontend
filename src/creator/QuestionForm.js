@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 
-const QuestionForm = ({ question }) => {
+const QuestionForm = ({ question, saveQuestion }) => {
     const INITIAL_FORM = {
-        q_text: '',
-        right_a: '',
-        wrong_a1: '',
-        wrong_a2: '',
-        wrong_a3: ''
+        id: null,
+        qText: '',
+        rightA: '',
+        wrongA1: '',
+        wrongA2: '',
+        wrongA3: ''
     }
     const [formData, setFormData] = useState(INITIAL_FORM);
 
@@ -15,11 +16,12 @@ const QuestionForm = ({ question }) => {
             setFormData(INITIAL_FORM);
         else
             setFormData({
-                q_text: question.q_text,
-                right_a: question.right_a,
-                wrong_a1: question.wrong_a1,
-                wrong_a2: question.wrong_a2,
-                wrong_a3: question.wrong_a3
+                id: question.id,
+                qText: question.qText,
+                rightA: question.rightA,
+                wrongA1: question.wrongA1,
+                wrongA2: question.wrongA2,
+                wrongA3: question.wrongA3
             })
     }, [question])
 
@@ -31,88 +33,108 @@ const QuestionForm = ({ question }) => {
     return (
         <form>
             <div className="form-group">
-                <label>
+                <label
+                    htmlFor="qText"
+                >
                     Question Text
                 </label>
                 <input
-                    id="q_text"
-                    name="q_text"
+                    id="qText"
+                    name="qText"
                     type="text"
                     className="form-control"
                     autoComplete="question-text"
                     placeholder="type your question here"
-                    value={formData.q_text}
+                    value={formData.qText}
                     onChange={handleChange}
                     required
                 />
             </div>
 
             <div className="form-group mt-4">
-                <label>
+                <label
+                    htmlFor="rightA
+                ">
                     <i className="fa-solid fa-circle-check me-2 text-success" /> Correct Answer
                 </label>
                 <input
-                    id="right_a"
-                    name="right_a"
+                    id="rightA"
+                    name="rightA"
                     type="text"
                     className="form-control"
                     autoComplete="correct-answer"
                     placeholder="type the right answer here"
-                    value={formData.right_a}
+                    value={formData.rightA}
                     onChange={handleChange}
                     required
                 />
             </div>
 
             <div className="form-group mt-4">
-                <label>
+                <label
+                    htmlFor="wrongA1"
+                >
                     <i className="fa-solid fa-circle-xmark me-2 text-danger" /> Incorrect Answer #1
                 </label>
                 <input
-                    id="wrong_a1"
-                    name="wrong_a1"
+                    id="wrongA"
+                    name="wrongA1"
                     type="text"
                     className="form-control"
                     autoComplete="wrong-answer"
                     placeholder="type a wrong answer here"
-                    value={formData.wrong_a1}
+                    value={formData.wrongA1}
                     onChange={handleChange}
                     required
                 />
             </div>
 
             <div className="form-group">
-                <label>
+                <label
+                    htmlFor="wrongA2"
+                >
                     <i className="fa-solid fa-circle-xmark me-2 text-danger" /> Incorrect Answer #2 (optional)
                 </label>
                 <input
-                    id="wrong_a2"
-                    name="wrong_a2"
+                    id="wrongA2"
+                    name="wrongA2"
                     type="text"
                     className="form-control"
                     autoComplete="wrong-answer"
                     placeholder="type a wrong answer here"
-                    value={formData.wrong_a2}
+                    value={formData.wrongA2}
                     onChange={handleChange}
                     required
                 />
             </div>
 
             <div className="form-group">
-                <label>
+                <label
+                    htmlFor="wrongA3"
+                >
                     <i className="fa-solid fa-circle-xmark me-2 text-danger" /> Incorrect Answer #3 (optional)
                 </label>
                 <input
-                    id="wrong_a3"
-                    name="wrong_a3"
+                    id="wrongA3"
+                    name="wrongA3"
                     type="text"
                     className="form-control"
                     autoComplete="wrong-answer"
                     placeholder="type a wrong answer here"
-                    value={formData.wrong_a3}
+                    value={formData.wrongA3}
                     onChange={handleChange}
                     required
                 />
+            </div>
+
+            <div>
+                <button
+                    type="button"
+                    className="btn btn-danger mt-4"
+                    onClick={(evt) => saveQuestion(evt, formData)}
+                >
+                    SAVE CHANGES
+                </button>
             </div>
 
         </form>

@@ -23,24 +23,40 @@ const Editor = () => {
             setQuiz(quiz);
             // setCurrentQuestion(quiz.questions[0] || null);
             setWorkspaceComponent(
-                <QuizSettingsForm quiz={quiz} />
+                <QuizSettingsForm
+                    quiz={quiz}
+                    saveQuiz={saveQuiz}
+                />
             )
         }
         fetchQuiz();
     }, [id]);
 
     //
-    // Handle clicks on "save changes" button
+    // Handle clicks on "save changes" button in Quiz component
     //
-    async function saveClick(evt) {
-        // call the quiz update function in the API
+    async function saveQuiz(evt, formData) {
+        evt.preventDefault();
+        // call the quis update function in the API
+        const { id, ...data } = formData;
+        const question = await QuizzlyApi.updateQuiz(id, data);
+    }
 
+    //
+    // Handle clicks on "save changes" button in Question component
+    //
+    async function saveQuestion(evt, formData) {
+        evt.preventDefault();
+        // call the question update function in the API
+        const { id, ...data } = formData;
+        const question = await QuizzlyApi.updateQuestion(id, data);
     }
 
     //
     // Handle clicks in the editor navigation panel
     //
     async function navClick(evt) {
+        evt.preventDefault();
         const targetId = evt.target.id;
 
         console.debug("Editor navigation click, target:", targetId);
@@ -48,34 +64,41 @@ const Editor = () => {
         if (targetId === "quizSettingsButton") {
             // display the quiz settings editor
             setWorkspaceComponent(
-                <QuizSettingsForm quiz={quiz} />
+                <QuizSettingsForm
+                    quiz={quiz}
+                    saveQuiz={saveQuiz}
+                />
             );
         }
         else if (targetId === "addQuestionButton") {
-            // add a new question to this quiz
+            // add a new blank question to this quiz
             const data = {
-                q_text: '(new question)',
-                right_a: '',
-                wrong_a1: '',
-                wrong_a2: '',
-                wrong_a3: '',
-                question_order: quiz.questions.length,
-                quiz_id: quiz.id
+                qText: '(new question)',
+                rightA: '',
+                wrongA1: '',
+                questionOrder: quiz.questions.length,
+                quizId: quiz.id
             }
-            const newQ = await QuizzlyApi.newQuestion(data);
+            const newQ = await QuizzlyApi.createQuestion(data);
 
             console.log(newQ);
             quiz.questions.push(newQ);
 
             // display the new question in the editor
             setWorkspaceComponent(
-                <QuestionForm question={quiz.questions[quiz.questions.length - 1]} />
+                <QuestionForm
+                    question={quiz.questions[quiz.questions.length - 1]}
+                    saveQuestion={saveQuestion}
+                />
             );
         }
         else {
             // display the selected question in the editor
             setWorkspaceComponent(
-                <QuestionForm question={quiz.questions[+targetId - 1]} />
+                <QuestionForm
+                    question={quiz.questions[+targetId - 1]}
+                    saveQuestion={saveQuestion}
+                />
             );
         }
     }
@@ -91,13 +114,11 @@ const Editor = () => {
                         <EditorNav
                             questionList={quiz.questions}
                             navClick={navClick}
-                            saveClick={saveClick}
                         />
                     </div>
                 </aside>
-                <main className="col-10">
+                <main className="container col-10 px-5 text-start">
                     <div className="py-3">
-                        {/* <EditorWorkspace component={workspaceComponent} /> */}
                         {workspaceComponent}
                     </div>
                 </main>

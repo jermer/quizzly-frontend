@@ -7,7 +7,7 @@ const QuestionThumbnail = ({ question, questionClick }) => {
             onClick={questionClick}
         >
             <div className="card-body small" id={question.id}>
-                {question.q_text}
+                {question.qText}
             </div>
 
             {/* buttons to reorder and delete questions */}
