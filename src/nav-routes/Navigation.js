@@ -43,7 +43,7 @@ const Navigation = ({ logout }) => {
                         </li>
                         <li className="dropdown-item">
                             <Link className="nav-link" to="/" onClick={logout}>
-                                <i className="fa-solid fa-right-from-bracket fa-flip-horizontal"></i> Logout
+                                <i className="fa-solid fa-right-from-bracket fa-flip-horizontal me-1"></i> Logout
                             </Link>
                         </li>
 

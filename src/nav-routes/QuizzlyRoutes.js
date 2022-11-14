@@ -9,6 +9,7 @@ import QuizList from "../quizzes/QuizList";
 
 import Library from "../creator/Library";
 import Editor from "../creator/Editor";
+import Player from "../player/Player";
 
 const QuizzlyRoutes = ({ login, signup }) => {
 
@@ -19,9 +20,7 @@ const QuizzlyRoutes = ({ login, signup }) => {
             <Route path="signup" element={<SignupForm signup={signup} />} />
 
             <Route path="/discover" element={<QuizList />} />
-
-            {/* <Route path="/quizzes/new" element={<QuizForm />} /> */}
-            {/* <Route path="/quizzes/:id" element={<QuizForm />} /> */}
+            <Route path="/player/:id" element={<Player />} />
 
             <Route path="/creator/library" element={<Library />} />
             <Route path="/creator/:id" element={<Editor />} />

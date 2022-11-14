@@ -5,7 +5,7 @@ import QuizCard from "./QuizCard";
 import QuizzlyApi from "../api/api";
 import SearchForm from "./SearchForm";
 
-const QuizList = ({ filters }) => {
+const QuizList = ({ filters, cardAction }) => {
     const [quizzes, setQuizzes] = useState(null);
 
     useEffect(function getQuizzesOnMount() {
@@ -31,6 +31,7 @@ const QuizList = ({ filters }) => {
                                 id={q.id}
                                 title={q.title}
                                 description={q.description}
+                                cardAction={cardAction}
                             />
                         ))}
                     </div>

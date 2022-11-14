@@ -2,9 +2,16 @@ import { Link } from "react-router-dom";
 
 import "./QuizCard.css";
 
-const QuizCard = ({ id, title, description }) => {
+const QuizCard = ({ id, title, description, cardAction }) => {
     return (
-        <Link className="QuizCard card" to={`/creator/${id}`}>
+        <Link
+            className="QuizCard card"
+            to={cardAction === 'edit' ?
+                `/creator/${id}`
+                :
+                `/player/${id}`
+            }
+        >
             <div className="card-body">
                 <h5 className="card-title">
                     {title}
@@ -13,7 +20,20 @@ const QuizCard = ({ id, title, description }) => {
                         className="float-right ml-5" />} */}
                 </h5>
                 <p className="card-text"><small>{description}</small></p>
-                (Button?)
+                <div>
+                    <button className="btn btn-small btn-primary">
+                        {cardAction === 'edit'
+                            ?
+                            <span>
+                                <i class="fa-solid fa-pen-to-square me-1"></i> Edit
+                            </span>
+                            :
+                            <span>
+                                <i class="fa-solid fa-circle-play me-1"></i> Play!
+                            </span>
+                        }
+                    </button>
+                </div>
             </div>
         </Link>
     );

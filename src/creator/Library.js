@@ -14,7 +14,10 @@ const Library = () => {
     return (
         <div>
             <h3> User Library: {currentUser.username} </h3>
-            <QuizList filters={{ creator: currentUser.username }} />
+            <QuizList
+                filters={{ creator: currentUser.username }}
+                cardAction={'edit'}
+            />
         </div>
     )
 }
