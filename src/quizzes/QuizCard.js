@@ -25,11 +25,11 @@ const QuizCard = ({ id, title, description, cardAction }) => {
                         {cardAction === 'edit'
                             ?
                             <span>
-                                <i class="fa-solid fa-pen-to-square me-1"></i> Edit
+                                <i className="fa-solid fa-pen-to-square me-1"></i> Edit
                             </span>
                             :
                             <span>
-                                <i class="fa-solid fa-circle-play me-1"></i> Play!
+                                <i className="fa-solid fa-circle-play me-1"></i> Play!
                             </span>
                         }
                     </button>
