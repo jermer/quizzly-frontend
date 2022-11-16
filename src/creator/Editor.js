@@ -3,23 +3,34 @@ import { useParams } from "react-router-dom";
 
 import QuizzlyApi from "../api/api";
 import LoadingSpinner from "../common/LoadingSpinner";
-// import EditorWorkspace from "./EditorWorkspace";
+
 import EditorNav from "./EditorNav";
 import QuestionForm from "./QuestionForm";
 import QuizSettingsForm from "./QuizSettingsForm";
+
+/** Quiz Editor component
+ * 
+ *  Displays a navigation panel that allows user to move between
+ *  general quiz settings and individual quiz questions.
+ * 
+ *  Clicks in the navigation panel prompt different components
+ *  to load in the editor workspace. 
+ * 
+ */
 
 const Editor = () => {
     const { id } = useParams();
 
     console.debug("Quiz Editor", "id =", id);
 
+    // holds the current quiz and its questions
     const [quiz, setQuiz] = useState(null);
 
+    // holds a component to be rendered in the workspace
     const [workspaceComponent, setWorkspaceComponent] = useState(null);
 
     /** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-     * When component mounts, fetch quiz
-     * then update state for quiz and questions list
+     * When component mounts: fetch quiz and update state
      */
 
     useEffect(() => {
@@ -65,7 +76,7 @@ const Editor = () => {
         // call the question update function in the API
         const question = await QuizzlyApi.updateQuestion(id, data);
 
-        // update the question locally in state
+        // update the question locally, inside the quiz state
         setQuiz(qz => ({
             ...qz,
             questions: qz.questions.map(qst => {
