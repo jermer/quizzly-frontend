@@ -14,14 +14,21 @@ const Editor = () => {
     console.debug("Quiz Editor", "id =", id);
 
     const [quiz, setQuiz] = useState(null);
-    // const [currentQuestion, setCurrentQuestion] = useState(null);
+
     const [workspaceComponent, setWorkspaceComponent] = useState(null);
+
+    /** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+     * When component mounts, fetch quiz
+     * then update state for quiz and questions list
+     */
 
     useEffect(() => {
         async function fetchQuiz() {
             const quiz = await QuizzlyApi.getQuiz(id);
             setQuiz(quiz);
-            // setCurrentQuestion(quiz.questions[0] || null);
+
+            // the initial workspace component is
+            // to display the quiz settings form
             setWorkspaceComponent(
                 <QuizSettingsForm
                     quiz={quiz}
@@ -32,29 +39,47 @@ const Editor = () => {
         fetchQuiz();
     }, [id]);
 
-    //
-    // Handle clicks on "save changes" button in Quiz component
-    //
+    /** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+     * Handle clicks on "save changes" button in QuizSettingsForm component
+     */
+
     async function saveQuiz(evt, formData) {
         evt.preventDefault();
-        // call the quis update function in the API
         const { id, ...data } = formData;
+
+        // call the quiz update function in the API
         const question = await QuizzlyApi.updateQuiz(id, data);
+
+        // update the quiz locally in state
+        setQuiz(qz => ({ ...qz, ...data }));
     }
 
-    //
-    // Handle clicks on "save changes" button in Question component
-    //
+    /** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+     * Handle clicks on "save changes" button in QuestionForm component
+     */
+
     async function saveQuestion(evt, formData) {
         evt.preventDefault();
-        // call the question update function in the API
         const { id, ...data } = formData;
+
+        // call the question update function in the API
         const question = await QuizzlyApi.updateQuestion(id, data);
+
+        // update the question locally in state
+        setQuiz(qz => ({
+            ...qz,
+            questions: qz.questions.map(qst => {
+                if (qst.id !== id)
+                    return qst;
+                return { ...qst, ...data };
+            })
+        }))
     }
 
-    //
-    // Handle clicks in the editor navigation panel
-    //
+    /** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+     * Handle clicks in the navigator panel
+     */
+
     async function navClick(evt) {
         evt.preventDefault();
         const targetId = evt.target.id;
@@ -67,6 +92,7 @@ const Editor = () => {
                 <QuizSettingsForm
                     quiz={quiz}
                     saveQuiz={saveQuiz}
+
                 />
             );
         }
@@ -76,6 +102,8 @@ const Editor = () => {
                 qText: '(new question)',
                 rightA: '',
                 wrongA1: '',
+                wrongA2: '',
+                wrongA3: '',
                 questionOrder: quiz.questions.length,
                 quizId: quiz.id
             }
@@ -102,6 +130,10 @@ const Editor = () => {
             );
         }
     }
+
+    /** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+     * Render the component
+     */
 
     if (!quiz) return <LoadingSpinner />;
 

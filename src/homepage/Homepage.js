@@ -1,7 +1,7 @@
 
 const Homepage = () => {
     return (
-        <h1>QUIZZLY YAH!</h1>
+        <h1>QUIZZLY IS UP AND RUNNING!</h1>
     );
 }
 

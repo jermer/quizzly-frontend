@@ -104,7 +104,6 @@ const QuestionForm = ({ question, saveQuestion }) => {
                     placeholder="type a wrong answer here"
                     value={formData.wrongA2}
                     onChange={handleChange}
-                    required
                 />
             </div>
 
@@ -123,7 +122,6 @@ const QuestionForm = ({ question, saveQuestion }) => {
                     placeholder="type a wrong answer here"
                     value={formData.wrongA3}
                     onChange={handleChange}
-                    required
                 />
             </div>
 
