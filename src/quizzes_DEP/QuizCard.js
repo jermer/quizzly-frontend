@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 import "./QuizCard.css";
 
-const QuizCard = ({ id, title, description, cardAction }) => {
+const QuizCard = ({ id, title, description, creator, cardAction }) => {
     return (
         <Link
             className="QuizCard card"
@@ -19,7 +19,12 @@ const QuizCard = ({ id, title, description, cardAction }) => {
                         alt={name}
                         className="float-right ml-5" />} */}
                 </h5>
-                <p className="card-text"><small>{description}</small></p>
+
+                <div className="card-text small">
+                    <p>{description}</p>
+                    <p>by: {creator}</p>
+                </div>
+
                 <div>
                     <button className="btn btn-small btn-primary">
                         {cardAction === 'edit'

@@ -2,7 +2,14 @@
 import QuizSettingsForm from "./QuizSettingsForm";
 import QuestionThumbnail from "./QuestionThumbnail";
 
-const EditorNav = ({ questionList, navClick }) => {
+const EditorNav = ({
+    questionList,
+    showQuizSettings,
+    showQuestion,
+    addQuestion,
+    deleteQuestion,
+    navClick
+}) => {
 
     return (
         <div>
@@ -11,7 +18,8 @@ const EditorNav = ({ questionList, navClick }) => {
                 type="button"
                 className="btn btn-secondary mb-2"
                 id="quizSettingsButton"
-                onClick={navClick}
+                // onClick={navClick}
+                onClick={showQuizSettings}
             >
                 <i className="fa-solid fa-gear me-1"></i> Quiz Settings
             </button>
@@ -21,7 +29,9 @@ const EditorNav = ({ questionList, navClick }) => {
                 <QuestionThumbnail
                     key={q.id}
                     question={q}
-                    questionClick={navClick}
+                    // questionClick={navClick}
+                    showQuestion={showQuestion}
+                    deleteQuestion={deleteQuestion}
                 />
             ))}
 
@@ -30,7 +40,8 @@ const EditorNav = ({ questionList, navClick }) => {
                 type="button"
                 className="btn btn-success"
                 id="addQuestionButton"
-                onClick={navClick}
+                // onClick={navClick}
+                onClick={addQuestion}
             >
                 <i className="fa-solid fa-circle-plus me-1" /> Add Question
             </button>

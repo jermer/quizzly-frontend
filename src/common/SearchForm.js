@@ -8,19 +8,19 @@ import "./SearchForm.css";
 function SearchForm({ handleSearch }) {
     // console.debug("SearchForm", "searchFor=", typeof searchFor);
 
-    const [searchTerm, setSearchTerm] = useState("");
+    const [searchString, setSearchString] = useState("");
 
     /** Tell parent to filter */
     function handleSubmit(evt) {
         // take care of accidentally trying to search for just spaces
         evt.preventDefault();
-        handleSearch(searchTerm.trim() || undefined);
-        setSearchTerm(searchTerm.trim());
+        handleSearch(searchString.trim() || undefined);
+        setSearchString(searchString.trim());
     }
 
     /** Update form fields */
     function handleChange(evt) {
-        setSearchTerm(evt.target.value);
+        setSearchString(evt.target.value);
     }
 
     return (
@@ -36,7 +36,7 @@ function SearchForm({ handleSearch }) {
                         placeholder="Search"
                         aria-label="Search"
                         aria-describedby="submit-button"
-                        value={searchTerm}
+                        value={searchString}
                         name="searchTerm"
                         onChange={handleChange}
                     />

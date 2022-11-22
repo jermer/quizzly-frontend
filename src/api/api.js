@@ -66,6 +66,13 @@ class QuizzlyApi {
         return res.quiz;
     }
 
+    /** Delete a quiz */
+
+    static async deleteQuiz(id) {
+        let res = await this.request(`quizzes/${id}`, {}, "delete");
+
+    }
+
     /** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
      * QUESTION ROUTES
      */
@@ -82,6 +89,13 @@ class QuizzlyApi {
     static async updateQuestion(id, data) {
         let res = await this.request(`questions/${id}`, data, "patch");
         return res.question;
+    }
+
+    /** Delete a question */
+
+    static async deleteQuestion(id) {
+        let res = await this.request(`questions/${id}`, {}, "delete");
+
     }
 
     //   /** Get list of jobs (filtered by title if not undefined) */

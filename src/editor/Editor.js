@@ -91,6 +91,102 @@ const Editor = () => {
      * Handle clicks in the navigator panel
      */
 
+    function showQuizSettings(evt) {
+        evt.preventDefault();
+        console.debug("Editor: quiz settings", quiz.id);
+        // display the quiz settings editor
+        setWorkspaceComponent(
+            <QuizSettingsForm
+                quiz={quiz}
+                saveQuiz={saveQuiz}
+
+            />
+        );
+    }
+
+    function showQuestion(evt) {
+        evt.preventDefault();
+        console.debug("Editor: show question, id =", evt.target.id);
+
+        // find the target id in the question array 
+        let idx = quiz.questions.findIndex(q => q.id === +evt.target.id);
+
+        // show the question in the editor panel
+        setWorkspaceComponent(
+            <QuestionForm
+                question={quiz.questions[idx]}
+                saveQuestion={saveQuestion}
+            />
+        );
+    }
+
+    async function addQuestion(evt) {
+        evt.preventDefault();
+        console.debug("Editor: add question");
+        // create a new blank question
+        const data = {
+            qText: '(new question)',
+            rightA: '',
+            wrongA1: '',
+            wrongA2: '',
+            wrongA3: '',
+            quizId: quiz.id
+        }
+        const newQ = await QuizzlyApi.createQuestion(data);
+
+        // add new question to the quiz in state
+        setQuiz(qz => ({
+            ...qz,
+            questions: [...qz.questions, newQ]
+        }))
+
+        console.debug("Created new question, id =", newQ.id);
+
+        // show the new question in the editor panel
+        // note that quiz.questions.length does not yet reflect
+        // the new question we just added
+        setWorkspaceComponent(
+            <QuestionForm
+                // question={quiz.questions[quiz.questions.length]}
+                question={newQ}
+                saveQuestion={saveQuestion}
+            />
+        );
+    }
+
+    async function deleteQuestion(evt) {
+        evt.preventDefault();
+        const id = +evt.target.closest(".card-body").id;
+
+        console.debug("Editor: delete question, id =", id);
+
+        // find the target id in the question array 
+        let idx = quiz.questions.findIndex(q => q.id === id);
+
+        console.log("IDXXXXXX", idx)
+
+        // delete the question in the db
+        await QuizzlyApi.deleteQuestion(id);
+
+        // remove the question from the quiz in state
+        setQuiz(qz => ({
+            ...qz,
+            questions: qz.questions.filter(q => q.id !== id)
+        }))
+
+        // determine which question to display now
+        idx = Math.min(idx + 1, quiz.questions.length - 2);
+
+        // show this question in the editor panel
+        setWorkspaceComponent(
+            <QuestionForm
+                question={quiz.questions[idx]}
+                saveQuestion={saveQuestion}
+            />
+        );
+    }
+
+
     async function navClick(evt) {
         evt.preventDefault();
         const targetId = evt.target.id;
@@ -142,9 +238,7 @@ const Editor = () => {
         }
     }
 
-    /** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-     * Render the component
-     */
+    // render the component
 
     if (!quiz) return <LoadingSpinner />;
 
@@ -156,6 +250,10 @@ const Editor = () => {
                     <div className="py-3">
                         <EditorNav
                             questionList={quiz.questions}
+                            showQuizSettings={showQuizSettings}
+                            addQuestion={addQuestion}
+                            showQuestion={showQuestion}
+                            deleteQuestion={deleteQuestion}
                             navClick={navClick}
                         />
                     </div>
