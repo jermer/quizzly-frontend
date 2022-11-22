@@ -2,11 +2,12 @@ import { Link } from "react-router-dom";
 
 import "./LibraryCard.css";
 
-const LibraryCard = ({ id, title, description, creator }) => {
+const LibraryCard = ({ id, title, description, creator, handleDelete }) => {
     return (
-        <Link
+        <div
+            id={id}
             className="LibraryCard card"
-            to={`/creator/${id}`}
+        // to={`/creator/${id}`}
         >
             <div className="card-body">
                 <h5 className="card-title">
@@ -22,14 +23,25 @@ const LibraryCard = ({ id, title, description, creator }) => {
                 </div>
 
                 <div>
-                    <button className="btn btn-small btn-primary">
+                    <Link
+                        className="btn btn-small btn-primary"
+                        to={`/creator/${id}`}
+                    >
+                        <i className="fa-solid fa-pen-to-square me-1"></i> Edit
+                    </Link>
+
+                    <button
+                        className="btn btn-small btn-danger"
+                        onClick={handleDelete}
+                    >
                         <span>
-                            <i className="fa-solid fa-pen-to-square me-1"></i> Edit
+                            <i className="fa-solid fa-trash-can"></i>
                         </span>
                     </button>
+
                 </div>
             </div>
-        </Link>
+        </div>
     );
 }
 

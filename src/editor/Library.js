@@ -49,6 +49,34 @@ const Library = () => {
         setQuizzes(quizzes);
     }
 
+    async function handleNew(evt) {
+        evt.preventDefault();
+
+        const data = {
+            title: '(new quiz)',
+            description: '',
+            creator: currentUser.username
+        };
+
+        // add new blank quiz in db
+        const newQuiz = await QuizzlyApi.createQuiz(data);
+
+        // add new quiz to state
+        setQuizzes(qz => ([...qz, newQuiz]));
+    }
+
+    async function handleDelete(evt) {
+        evt.preventDefault();
+        const id = +evt.target.closest(".LibraryCard").id;
+        console.debug("Library: delete quiz, id =", id);
+
+        // remove quiz in db
+        await QuizzlyApi.deleteQuiz(id);
+
+        // remove quiz in state
+        setQuizzes(qz => (qz.filter(q => q.id !== id)));
+    }
+
     if (!currentUser || !quizzes) return <LoadingSpinner />;
 
     return (
@@ -57,7 +85,10 @@ const Library = () => {
 
             <SearchForm handleSearch={search} />
 
-            <button className="btn btn-warning">
+            <button
+                className="btn btn-warning"
+                onClick={handleNew}
+            >
                 New Quiz
             </button>
 
@@ -76,6 +107,7 @@ const Library = () => {
                                 title={q.title}
                                 description={q.description}
                                 creator={q.creator}
+                                handleDelete={handleDelete}
                             />
                         ))}
                     </div>
