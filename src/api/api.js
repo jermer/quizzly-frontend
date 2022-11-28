@@ -73,6 +73,7 @@ class QuizzlyApi {
     /** Get quizzes (with optional filters) */
 
     static async getQuizzes(filters) {
+        console.log(">>>", filters);
         let res = await this.request("quizzes", filters);
         return res.quizzes;
     }
