@@ -49,7 +49,7 @@ const LoginForm = ({ login }) => {
                                     autoComplete="username"
                                     value={formData.username}
                                     onChange={handleChange}
-                                    required
+                                // required
                                 />
                             </div>
                             <div className="form-group">
@@ -64,7 +64,7 @@ const LoginForm = ({ login }) => {
                                     autoComplete="current-password"
                                     value={formData.password}
                                     onChange={handleChange}
-                                    required
+                                // requiured
                                 />
                             </div>
 

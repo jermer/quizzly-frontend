@@ -56,7 +56,7 @@ function App() {
       return { success: true };
 
     } catch (errors) {
-      console.log("+++++", errors)
+      // console.log("+++++", errors)
       return { success: false, errors }
     }
   }
