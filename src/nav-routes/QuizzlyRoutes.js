@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import Homepage from "../homepage/Homepage";
 import LoginForm from "../auth/LoginForm";
 import SignupForm from "../auth/SignupForm";
+import ProfileForm from "../profile/ProfileForm";
 
 // import QuizList from "../quizzes/QuizList";
 import Library from "../editor/Library";
@@ -28,7 +29,7 @@ const QuizzlyRoutes = ({ login, signup }) => {
             <Route path="/creator/:id" element={<Editor />} />
 
             {/* <Route path="/reports" element={<QuizList />} /> */}
-            {/* <Route path="/profile" element={<QuizList />} /> */}
+            <Route path="/profile" element={<ProfileForm />} />
         </Routes>
     );
 

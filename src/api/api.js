@@ -27,10 +27,35 @@ class QuizzlyApi {
 
     // Individual API routes
 
-    /** Get the current user. */
+    /** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+     * USER ROUTES
+     */
+
+    /** Create a new user via registration/signup. */
+
+    static async signup(data) {
+        let res = await this.request(`auth/register`, data, "post");
+        return res.token;
+    }
+
+    /** Get token for login from username, password. */
+
+    static async login(data) {
+        let res = await this.request(`auth/token`, data, "post");
+        return res.token;
+    }
+
+    /** Get details of a user by username. */
 
     static async getUser(username) {
         let res = await this.request(`users/${username}`);
+        return res.user;
+    }
+
+    /** Update user profile from data */
+
+    static async updateUser(username, data) {
+        let res = await this.request(`users/${username}`, data, "patch");
         return res.user;
     }
 
@@ -111,26 +136,7 @@ class QuizzlyApi {
     //     await this.request(`users/${username}/jobs/${id}`, {}, "post");
     //   }
 
-    /** Get token for login from username, password. */
 
-    static async login(data) {
-        let res = await this.request(`auth/token`, data, "post");
-        return res.token;
-    }
-
-    //   /** Signup for site. */
-
-    //   static async signup(data) {
-    //     let res = await this.request(`auth/register`, data, "post");
-    //     return res.token;
-    //   }
-
-    //   /** Save user profile page. */
-
-    //   static async saveProfile(username, data) {
-    //     let res = await this.request(`users/${username}`, data, "patch");
-    //     return res.user;
-    //   }
 
 }
 
