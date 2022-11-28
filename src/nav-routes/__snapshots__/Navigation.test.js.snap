@@ -1,0 +1,143 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot when logged in 1`] = `
+<DocumentFragment>
+  <nav
+    class="Navigation navbar navbar-expand-md"
+  >
+    <a
+      class="navbar-brand"
+      href="/"
+    >
+      Quizzly
+    </a>
+    <ul
+      class="navbar-nav ml-auto"
+    >
+      <li
+        class="nav-item mr-4"
+      >
+        <a
+          class="nav-link"
+          href="/discover"
+        >
+          Discover
+        </a>
+      </li>
+      <li
+        class="nav-item mr-4"
+      >
+        <a
+          class="nav-link"
+          href="/creator/library"
+        >
+          Library
+        </a>
+      </li>
+      <li
+        class="nav-item mr-4"
+      >
+        <a
+          class="nav-link"
+          href="/reports"
+        >
+          Reports
+        </a>
+      </li>
+      <li
+        class="nav-item dropdown mr-4"
+      >
+        <a
+          aria-expanded="false"
+          class="nav-link dropdown-toggle"
+          data-bs-toggle="dropdown"
+          href="#"
+          role="button"
+        >
+          <i
+            class="fa-solid fa-user"
+          />
+        </a>
+        <ul
+          class="dropdown-menu"
+        >
+          <li>
+            <span
+              class="dropdown-item-text"
+            >
+              testuser
+            </span>
+          </li>
+          <li>
+            <hr
+              class="dropdown-divider"
+            />
+          </li>
+          <li
+            class="dropdown-item"
+          >
+            <a
+              class="nav-link"
+              href="/profile"
+            >
+              Edit Profile
+            </a>
+          </li>
+          <li
+            class="dropdown-item"
+          >
+            <a
+              class="nav-link"
+              href="/"
+            >
+              <i
+                class="fa-solid fa-right-from-bracket fa-flip-horizontal me-1"
+              />
+               Logout
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+</DocumentFragment>
+`;
+
+exports[`matches snapshot when logged out 1`] = `
+<DocumentFragment>
+  <nav
+    class="Navigation navbar navbar-expand-md"
+  >
+    <a
+      class="navbar-brand"
+      href="/"
+    >
+      Quizzly
+    </a>
+    <ul
+      class="navbar-nav ml-auto"
+    >
+      <li
+        class="nav-item mr-4"
+      >
+        <a
+          class="nav-link"
+          href="/login"
+        >
+          Login
+        </a>
+      </li>
+      <li
+        class="nav-item mr-4"
+      >
+        <a
+          class="nav-link"
+          href="/signup"
+        >
+          Sign Up
+        </a>
+      </li>
+    </ul>
+  </nav>
+</DocumentFragment>
+`;
