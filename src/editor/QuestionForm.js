@@ -1,5 +1,14 @@
 import { useEffect, useState } from "react";
 
+/** Form for editing an individual quiz question.
+ * 
+ * Displays inputs for question and answer texts, plus a
+ * button to save the question.
+ * 
+ * Parent component is 'Editor' which passes down
+ * question details and button functionality.
+ */
+
 const QuestionForm = ({ question, saveQuestion }) => {
     const INITIAL_FORM = {
         id: null,

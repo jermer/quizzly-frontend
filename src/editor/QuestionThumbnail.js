@@ -1,4 +1,13 @@
 
+/** Individual question thumbnail.
+ * 
+ * Displays question text and a button to delete the
+ * question from the quiz.
+ * 
+ * Parent component is 'EditorNav', which passes down
+ * props for question details and button functionality.
+ */
+
 const QuestionThumbnail = ({ question, showQuestion, deleteQuestion }) => {
 
     return (

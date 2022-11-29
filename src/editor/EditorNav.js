@@ -1,6 +1,14 @@
-
-import QuizSettingsForm from "./QuizSettingsForm";
 import QuestionThumbnail from "./QuestionThumbnail";
+
+/** Navigaton panel for quiz editor
+ * 
+ * Displays a button to edit general quiz settings,
+ * a list of thumbnails for the questions on the quiz,
+ * and a button for adding a new question.
+ * 
+ * All button functions are passed down from parent,
+ * the 'Editor' component.
+ */
 
 const EditorNav = ({
     questionList,
@@ -8,7 +16,6 @@ const EditorNav = ({
     showQuestion,
     addQuestion,
     deleteQuestion,
-    navClick
 }) => {
 
     return (

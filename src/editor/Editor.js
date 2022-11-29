@@ -8,14 +8,13 @@ import EditorNav from "./EditorNav";
 import QuestionForm from "./QuestionForm";
 import QuizSettingsForm from "./QuizSettingsForm";
 
-/** Quiz Editor component
+/** Quiz editor
  * 
  *  Displays a navigation panel that allows user to move between
  *  general quiz settings and individual quiz questions.
  * 
  *  Clicks in the navigation panel prompt different components
- *  to load in the editor workspace. 
- * 
+ *  to load in the editor workspace.
  */
 
 const Editor = () => {
@@ -165,8 +164,6 @@ const Editor = () => {
         // find the target id in the question array 
         let idx = quiz.questions.findIndex(q => q.id === id);
 
-        console.log("IDXXXXXX", idx)
-
         // delete the question in the db
         await QuizzlyApi.deleteQuestion(id);
 
@@ -186,65 +183,16 @@ const Editor = () => {
         );
     }
 
-
-    async function navClick(evt) {
-        evt.preventDefault();
-        const targetId = evt.target.id;
-
-        console.debug("Editor navigation click, target:", targetId);
-
-        if (targetId === "quizSettingsButton") {
-            // display the quiz settings editor
-            setWorkspaceComponent(
-                <QuizSettingsForm
-                    quiz={quiz}
-                    saveQuiz={saveQuiz}
-
-                />
-            );
-        }
-        else if (targetId === "addQuestionButton") {
-            // add a new blank question to this quiz
-            const data = {
-                qText: '(new question)',
-                rightA: '',
-                wrongA1: '',
-                wrongA2: '',
-                wrongA3: '',
-                questionOrder: quiz.questions.length,
-                quizId: quiz.id
-            }
-            const newQ = await QuizzlyApi.createQuestion(data);
-
-            console.log(newQ);
-            quiz.questions.push(newQ);
-
-            // display the new question in the editor
-            setWorkspaceComponent(
-                <QuestionForm
-                    question={quiz.questions[quiz.questions.length - 1]}
-                    saveQuestion={saveQuestion}
-                />
-            );
-        }
-        else {
-            // display the selected question in the editor
-            setWorkspaceComponent(
-                <QuestionForm
-                    question={quiz.questions[+targetId - 1]}
-                    saveQuestion={saveQuestion}
-                />
-            );
-        }
-    }
-
-    // render the component
+    /** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+     * Render the component
+     */
 
     if (!quiz) return <LoadingSpinner />;
 
     return (
         <div className="container h-100">
             <div className="row h-100">
+
                 <aside className="col">
                     {/* offcanvas offcanvas-start show */}
                     <div className="py-3">
@@ -254,15 +202,16 @@ const Editor = () => {
                             addQuestion={addQuestion}
                             showQuestion={showQuestion}
                             deleteQuestion={deleteQuestion}
-                            navClick={navClick}
                         />
                     </div>
                 </aside>
+
                 <main className="container col-10 px-5 text-start">
                     <div className="py-3">
                         {workspaceComponent}
                     </div>
                 </main>
+
             </div>
         </div >
     )

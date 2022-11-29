@@ -3,12 +3,18 @@ import UserContext from "../auth/UserContext";
 
 import LoadingSpinner from "../common/LoadingSpinner";
 
-
 import QuizzlyApi from "../api/api";
 import SearchForm from "../common/SearchForm";
 import LibraryCard from "./LibraryCard";
 
-// import QuizList from "../quizzes/QuizList";
+/** Displays a list of quizzes in the users library.
+ * This list includes quizzes that the user has created,
+ * both public and private.
+ * 
+ * In addition to a list of 'QuizCard's, this component
+ * renders a search box and a button for creating a new
+ * quiz. 
+ */
 
 const Library = () => {
     const { currentUser } = useContext(UserContext);

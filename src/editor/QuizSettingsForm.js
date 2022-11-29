@@ -1,5 +1,14 @@
 import { useEffect, useState } from 'react';
 
+/** Form for editing general quiz settings.
+ * 
+ * Displays inputs for quiz title, description, and
+ * whether the quiz is public or private.
+ * 
+ * Parent component is 'Editor' which passes down
+ * quiz details and button functionality.
+ */
+
 const QuizSettingsForm = ({ quiz, saveQuiz }) => {
 
     const INITIAL_FORM = {
