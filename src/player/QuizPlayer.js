@@ -10,7 +10,7 @@ import OutroScreen from "./OutroScreen";
 
 import { shuffleArray } from "../helpers/shuffleArray";
 
-const Player = () => {
+const QuizPlayer = () => {
     const { id } = useParams();
 
     console.debug("Quiz Player", "id =", id);
@@ -103,4 +103,4 @@ const Player = () => {
 
 }
 
-export default Player;
+export default QuizPlayer;
