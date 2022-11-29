@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import QuizzlyApi from "../api/api";
 import LoadingSpinner from "../common/LoadingSpinner";
 
-import EditorNav from "./EditorNav";
+import QuizEditorNav from "./QuizEditorNav";
 import QuestionForm from "./QuestionForm";
 import QuizSettingsForm from "./QuizSettingsForm";
 
@@ -17,7 +17,7 @@ import QuizSettingsForm from "./QuizSettingsForm";
  *  to load in the editor workspace.
  */
 
-const Editor = () => {
+const QuizEditor = () => {
     const { id } = useParams();
 
     console.debug("Quiz Editor", "id =", id);
@@ -196,7 +196,7 @@ const Editor = () => {
                 <aside className="col">
                     {/* offcanvas offcanvas-start show */}
                     <div className="py-3">
-                        <EditorNav
+                        <QuizEditorNav
                             questionList={quiz.questions}
                             showQuizSettings={showQuizSettings}
                             addQuestion={addQuestion}
@@ -218,4 +218,4 @@ const Editor = () => {
 
 }
 
-export default Editor;
+export default QuizEditor;

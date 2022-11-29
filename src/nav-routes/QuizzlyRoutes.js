@@ -8,7 +8,7 @@ import ProfileForm from "../profile/ProfileForm";
 
 // import QuizList from "../quizzes/QuizList";
 import LibraryList from "../library/LibraryList";
-import Editor from "../editor/Editor";
+import QuizEditor from "../editor/QuizEditor";
 
 import DiscoverList from "../player/DiscoverList";
 import Player from "../player/Player";
@@ -28,7 +28,7 @@ const QuizzlyRoutes = ({ login, signup }) => {
             <Route path="/player/:id" element={<Player />} />
 
             <Route path="/creator/library" element={<LibraryList />} />
-            <Route path="/creator/:id" element={<Editor />} />
+            <Route path="/creator/:id" element={<QuizEditor />} />
 
             <Route path="/reports" element={<ReportList />} />
 

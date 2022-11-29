@@ -7,10 +7,10 @@ import QuestionThumbnail from "./QuestionThumbnail";
  * and a button for adding a new question.
  * 
  * All button functions are passed down from parent,
- * the 'Editor' component.
+ * the 'QuizEditor' component.
  */
 
-const EditorNav = ({
+const QuizEditorNav = ({
     questionList,
     showQuizSettings,
     showQuestion,
@@ -58,7 +58,7 @@ const EditorNav = ({
     )
 }
 
-export default EditorNav;
+export default QuizEditorNav;
 
 
 /*
