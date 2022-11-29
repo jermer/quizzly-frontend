@@ -156,6 +156,8 @@ const Editor = () => {
 
     async function deleteQuestion(evt) {
         evt.preventDefault();
+
+        // get the id of the question to be deleted
         const id = +evt.target.closest(".card-body").id;
 
         console.debug("Editor: delete question, id =", id);
@@ -174,14 +176,12 @@ const Editor = () => {
             questions: qz.questions.filter(q => q.id !== id)
         }))
 
-        // determine which question to display now
-        idx = Math.min(idx + 1, quiz.questions.length - 2);
-
-        // show this question in the editor panel
+        // show the quiz settings page
+        // -- future work: make a more user-friendly choice here
         setWorkspaceComponent(
-            <QuestionForm
-                question={quiz.questions[idx]}
-                saveQuestion={saveQuestion}
+            <QuizSettingsForm
+                quiz={quiz}
+                saveQuiz={saveQuiz}
             />
         );
     }
