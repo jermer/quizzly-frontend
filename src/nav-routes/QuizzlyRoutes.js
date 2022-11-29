@@ -13,6 +13,8 @@ import Editor from "../editor/Editor";
 import DiscoverList from "../player/DiscoverList";
 import Player from "../player/Player";
 
+import ReportList from "../reports/ReportList";
+
 const QuizzlyRoutes = ({ login, signup }) => {
 
     return (
@@ -28,7 +30,8 @@ const QuizzlyRoutes = ({ login, signup }) => {
             <Route path="/creator/library" element={<Library />} />
             <Route path="/creator/:id" element={<Editor />} />
 
-            {/* <Route path="/reports" element={<QuizList />} /> */}
+            <Route path="/reports" element={<ReportList />} />
+
             <Route path="/profile" element={<ProfileForm />} />
         </Routes>
     );

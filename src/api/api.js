@@ -95,8 +95,7 @@ class QuizzlyApi {
     /** Delete a quiz */
 
     static async deleteQuiz(id) {
-        let res = await this.request(`quizzes/${id}`, {}, "delete");
-
+        await this.request(`quizzes/${id}`, {}, "delete");
     }
 
     /** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -120,24 +119,18 @@ class QuizzlyApi {
     /** Delete a question */
 
     static async deleteQuestion(id) {
-        let res = await this.request(`questions/${id}`, {}, "delete");
-
+        await this.request(`questions/${id}`, {}, "delete");
     }
 
-    //   /** Get list of jobs (filtered by title if not undefined) */
+    /** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+     * USERS-QUIZZES ROUTES
+     */
 
-    //   static async getJobs(title) {
-    //     let res = await this.request("jobs", { title });
-    //     return res.jobs;
-    //   }
+    /** Record a user's score on a particular quiz */
 
-    //   /** Apply to a job */
-
-    //   static async applyToJob(username, id) {
-    //     await this.request(`users/${username}/jobs/${id}`, {}, "post");
-    //   }
-
-
+    static async recordScore(username, quizId, score) {
+        await this.request(`users/${username}/quizzes/${quizId}`, { score }, "post");
+    }
 
 }
 
