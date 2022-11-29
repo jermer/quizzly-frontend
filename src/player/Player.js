@@ -6,6 +6,8 @@ import QuestionScreen from "./QuestionScreen";
 
 import LoadingSpinner from "../common/LoadingSpinner";
 import IntroScreen from "./IntroScreen";
+import OutroScreen from "./OutroScreen";
+
 import { shuffleArray } from "../helpers/shuffleArray";
 
 const Player = () => {
@@ -20,7 +22,8 @@ const Player = () => {
     const [questions, setQuestions] = useState([]);
 
     // holds the index of the current question in the shuffled array
-    const [currQuestionIdx, setCurrQuestionIdx] = useState(null);
+    // const [currQuestionIdx, setCurrQuestionIdx] = useState(null);
+    const [currQuestionIdx, setCurrQuestionIdx] = useState(0);
 
     // holds the current question object
     const [currQuestion, setCurrQuestion] = useState(null);
@@ -62,17 +65,23 @@ const Player = () => {
     // - the current question screen
     function selectScreen() {
         if (!currQuestion) {
-            // return the quiz introduction component
-            return (
-                <IntroScreen
-                    title={quiz.title}
-                    description={quiz.description}
-                    startQuiz={startQuiz}
-                />
-            )
+            if (currQuestionIdx === 0) {
+                // return the quiz intro screen component
+                return (
+                    <IntroScreen
+                        title={quiz.title}
+                        description={quiz.description}
+                        startQuiz={startQuiz}
+                    />
+                )
+            } else {
+                // return the quiz outro screen component
+                return (
+                    <OutroScreen />
+                )
+            }
         } else {
-            // return a question screen
-            // for the current question
+            // return a question screen for the current question
             return (
                 <QuestionScreen
                     question={currQuestion}
