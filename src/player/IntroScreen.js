@@ -8,7 +8,7 @@ const IntroScreen = ({ title, description, startQuiz }) => {
                 className="btn btn-primary"
                 onClick={startQuiz}
             >
-                Start the Quiz!
+                <i className="fa-solid fa-circle-play me-2"></i>Start the quiz!
             </button>
         </div>
     )

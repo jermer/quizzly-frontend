@@ -1,7 +1,10 @@
 
-const OutroScreen = () => {
+const OutroScreen = ({ title }) => {
     return (
-        <h2>Quiz outro screen...</h2>
+        <div>
+            <h2>{title}</h2>
+            <p className="lead">You scored A/B on this quiz.</p>
+        </div>
     )
 }
 

@@ -77,7 +77,9 @@ const QuizPlayer = () => {
             } else {
                 // return the quiz outro screen component
                 return (
-                    <OutroScreen />
+                    <OutroScreen
+                        title={quiz.title}
+                    />
                 )
             }
         } else {
@@ -96,7 +98,7 @@ const QuizPlayer = () => {
     if (!quiz) return <LoadingSpinner />;
 
     return (
-        <div>
+        <div className="container mt-5">
             {selectScreen()}
         </div>
     )
