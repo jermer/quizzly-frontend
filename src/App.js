@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import jwt_decode from "jwt-decode";
 
 import './App.css';
@@ -8,6 +8,7 @@ import useLocalStorage from './hooks/useLocalStorage';
 import QuizzlyApi from './api/api';
 import QuizzlyRoutes from './nav-routes/QuizzlyRoutes';
 import Navigation from './nav-routes/Navigation';
+import LoadingSpinner from './common/LoadingSpinner';
 
 const TOKEN_STORAGE_ID = "quizzly-token";
 
@@ -16,7 +17,7 @@ const TOKEN_STORAGE_ID = "quizzly-token";
  */
 
 function App() {
-
+  const navigate = useNavigate();
   const [infoLoaded, setInfoLoaded] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
   const [token, setToken] = useLocalStorage(TOKEN_STORAGE_ID);
@@ -45,7 +46,14 @@ function App() {
 
   /** Handles site-wide signup */
   async function signup(signupData) {
+    try {
+      let token = await QuizzlyApi.signup(signupData);
+      setToken(token);
+      return { success: true };
 
+    } catch (errors) {
+      return { success: false, errors };
+    }
   }
 
   /** Handles site-wide login */
@@ -65,9 +73,14 @@ function App() {
   function logout() {
     setCurrentUser(null);
     setToken(null);
+    // redirect to login page
+    navigate("/login");
   }
 
   /** App render */
+  if (!infoLoaded)
+    return <LoadingSpinner />;
+
   return (
     <UserContext.Provider
       value={{ currentUser, setCurrentUser }}

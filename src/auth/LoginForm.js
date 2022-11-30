@@ -26,6 +26,8 @@ const LoginForm = ({ login }) => {
     function handleChange(evt) {
         const { name, value } = evt.target;
         setFormData(fdata => ({ ...fdata, [name]: value }));
+        // clear form errors
+        setFormErrors([]);
     };
 
     /** Render form */
@@ -34,7 +36,7 @@ const LoginForm = ({ login }) => {
             <div className="container col-md-6 offset-md-3 col-lg-4 offset-lg-4">
                 <h3 className="mb-3">Log In</h3>
                 <div className="card">
-                    <div className="card-body">
+                    <div className="card-body text-start">
 
                         <form onSubmit={handleSubmit}>
                             <div className="form-group">
@@ -69,15 +71,20 @@ const LoginForm = ({ login }) => {
                             </div>
 
                             {formErrors.length
-                                ? <Alert type="danger" messages={formErrors} />
+                                ?
+                                <div className="my-1">
+                                    <Alert type="danger" messages={formErrors} />
+                                </div>
                                 : null}
 
-                            <button
-                                className="btn btn-primary float-right"
-                                type="submit"
-                            >
-                                Submit
-                            </button>
+                            <div className="text-center mt-3">
+                                <button
+                                    className="btn btn-primary"
+                                    type="submit"
+                                >
+                                    Submit
+                                </button>
+                            </div>
                         </form>
 
                     </div>

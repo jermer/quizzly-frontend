@@ -55,49 +55,69 @@ const ProfileForm = () => {
     }
 
     return (
-        <form>
-            <div className="form-group">
-                <label>Username</label>
-                <p className="form-control-plaintext">{formData.username}</p>
+        <div className="ProfileForm">
+            <div className="container col-md-6 offset-md-3 col-lg-4 offset-lg-4">
+                <h3 className="mb-3">
+                    Edit User Profile: {currentUser.username}
+                </h3>
+                <div className="card">
+                    <div className="card-body text-start">
+
+                        <form onSubmit={handleSubmit}>
+
+                            <div className="form-group">
+                                <label>Email</label>
+                                <input
+                                    id="email"
+                                    name="email"
+                                    className="form-control"
+                                    autoComplete="email"
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                />
+                            </div>
+
+                            <div className="form-group">
+                                <label>Confirm password to make changes:</label>
+                                <input
+                                    id="password"
+                                    type="password"
+                                    name="password"
+                                    className="form-control"
+                                    autoComplete="current-password"
+                                    value={formData.password}
+                                    onChange={handleChange}
+                                />
+                            </div>
+
+                            {formErrors.length
+                                ?
+                                <div className="my-1">
+                                    <Alert type="danger" messages={formErrors} />
+                                </div>
+                                : null}
+
+                            {saveConfirmed
+                                ?
+                                <div className="my-1">
+                                    <Alert type="success" messages={["Updated successfully."]} />
+                                </div>
+                                : null}
+
+                            <div className="text-center mt-3">
+                                <button
+                                    className="btn btn-primary"
+                                    type="submit"
+                                >
+                                    Save Changes
+                                </button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
             </div>
-
-            <div className="form-group">
-                <label>Email</label>
-                <input
-                    name="email"
-                    className="form-control"
-                    value={formData.email}
-                    onChange={handleChange}
-                />
-            </div>
-
-            <div className="form-group">
-                <label>Confirm password to make changes:</label>
-                <input
-                    type="password"
-                    name="password"
-                    className="form-control"
-                    value={formData.password}
-                    onChange={handleChange}
-                />
-            </div>
-
-            {formErrors.length
-                ? <Alert type="danger" messages={formErrors} />
-                : null}
-
-            {saveConfirmed
-                ?
-                <Alert type="success" messages={["Updated successfully."]} />
-                : null}
-
-            <button
-                className="btn btn-primary btn-block mt-4"
-                onClick={handleSubmit}
-            >
-                Save Changes
-            </button>
-        </form>
+        </div>
     )
 }
 

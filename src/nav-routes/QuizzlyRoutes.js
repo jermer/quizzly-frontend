@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 import Homepage from "../homepage/Homepage";
 import LoginForm from "../auth/LoginForm";
@@ -19,20 +19,23 @@ const QuizzlyRoutes = ({ login, signup }) => {
 
     return (
         <Routes>
-            <Route path="/" element={<Homepage />} />
-            <Route path="login" element={<LoginForm login={login} />} />
-            <Route path="signup" element={<SignupForm signup={signup} />} />
+            <Route exact path="/" element={<Homepage />} />
+            <Route exact path="/login" element={<LoginForm login={login} />} />
+            <Route path="/signup" element={<SignupForm signup={signup} />} />
 
-            {/* <Route path="/discover" element={<QuizList />} /> */}
             <Route path="/discover" element={<DiscoverList />} />
+
             <Route path="/player/:id" element={<QuizPlayer />} />
 
             <Route path="/creator/library" element={<LibraryList />} />
+
             <Route path="/creator/:id" element={<QuizEditor />} />
 
             <Route path="/reports" element={<ReportList />} />
 
             <Route path="/profile" element={<ProfileForm />} />
+
+            <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
     );
 
