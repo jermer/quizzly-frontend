@@ -17,7 +17,7 @@ exports[`matches snapshot 1`] = `
         class="card"
       >
         <div
-          class="card-body"
+          class="card-body text-start"
         >
           <form>
             <div
@@ -54,12 +54,16 @@ exports[`matches snapshot 1`] = `
                 value=""
               />
             </div>
-            <button
-              class="btn btn-primary float-right"
-              type="submit"
+            <div
+              class="text-center mt-3"
             >
-              Submit
-            </button>
+              <button
+                class="btn btn-primary"
+                type="submit"
+              >
+                Submit
+              </button>
+            </div>
           </form>
         </div>
       </div>

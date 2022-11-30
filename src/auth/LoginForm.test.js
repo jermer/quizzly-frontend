@@ -1,4 +1,5 @@
 import { fireEvent, render } from '@testing-library/react';
+import { act } from 'react-dom/test-utils';
 import { MemoryRouter } from 'react-router-dom';
 import LoginForm from './LoginForm';
 
@@ -22,9 +23,10 @@ it("matches snapshot", function () {
 });
 
 //
-it("shows error alert on incorrect login", function () {
+it("shows error alert on incorrect login", async function () {
     const { getByText, getByLabelText, queryByText } = render(
         <MemoryRouter>
+            {/* Mock the behavior of the login function to fail */}
             <LoginForm login={() => ({
                 success: false,
                 errors: ["Invalid username/password"]
@@ -32,19 +34,16 @@ it("shows error alert on incorrect login", function () {
         </MemoryRouter>
     );
 
-    // const usernameInput = getByLabelText("Username");
-    // const passwordInput = getByLabelText("Password");
     const btn = getByText("Submit");
-
-    console.log(">>>>", btn);
 
     expect(
         queryByText("Invalid username/password")
     ).not.toBeInTheDocument();
 
-    // fireEvent.change(usernameInput, { target: { value: "badusername" } });
-    // fireEvent.change(passwordInput, { target: { value: "password" } });
-    fireEvent.click(btn);
+    // simulate button click event
+    await act(async () => {
+        await fireEvent.click(btn);
+    })
 
     expect(
         queryByText("Invalid username/password")

@@ -20,7 +20,9 @@ const QuizzlyRoutes = ({ login, signup }) => {
     return (
         <Routes>
             <Route exact path="/" element={<Homepage />} />
+
             <Route exact path="/login" element={<LoginForm login={login} />} />
+
             <Route path="/signup" element={<SignupForm signup={signup} />} />
 
             <Route path="/discover" element={<DiscoverList />} />

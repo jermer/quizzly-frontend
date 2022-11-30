@@ -45,6 +45,13 @@ class QuizzlyApi {
         return res.token;
     }
 
+    /** Validate username, password. */
+
+    static async validate(data) {
+        let res = await this.request(`auth/validate`, data, "post");
+        return res.success;
+    }
+
     /** Get details of a user by username. */
 
     static async getUser(username) {

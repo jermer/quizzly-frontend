@@ -2,49 +2,110 @@
 
 exports[`matches snapshot 1`] = `
 <DocumentFragment>
-  <form>
+  <div
+    class="ProfileForm"
+  >
     <div
-      class="form-group"
+      class="container col-md-6 offset-md-3 col-lg-4 offset-lg-4"
     >
-      <label>
-        Username
-      </label>
-      <p
-        class="form-control-plaintext"
+      <h3
+        class="mb-3"
       >
-        testuser
-      </p>
+        Edit User Profile: testuser
+      </h3>
+      <div
+        class="card"
+      >
+        <div
+          class="card-body text-start"
+        >
+          <form>
+            <div
+              class="form-group"
+            >
+              <label>
+                Email
+              </label>
+              <input
+                autocomplete="email"
+                class="form-control"
+                id="email"
+                name="email"
+                value="test@test.net"
+              />
+            </div>
+            <div
+              class="text-center mt-3"
+            >
+              <button
+                class="btn btn-primary"
+                type="submit"
+              >
+                Update Email
+              </button>
+            </div>
+          </form>
+          <hr />
+          <form>
+            <div
+              class="form-group"
+            >
+              <label>
+                Current Password
+              </label>
+              <input
+                autocomplete="current-password"
+                class="form-control"
+                id="currrent-password"
+                name="currentPassword"
+                type="password"
+                value=""
+              />
+            </div>
+            <div
+              class="form-group"
+            >
+              <label>
+                New Password
+              </label>
+              <input
+                autocomplete="new-password"
+                class="form-control"
+                id="new-password"
+                name="newPassword"
+                type="password"
+                value=""
+              />
+            </div>
+            <div
+              class="form-group"
+            >
+              <label>
+                Repeat New Password
+              </label>
+              <input
+                autocomplete="repeat-password"
+                class="form-control"
+                id="repeat-password"
+                name="repeatPassword"
+                type="password"
+                value=""
+              />
+            </div>
+            <div
+              class="text-center mt-3"
+            >
+              <button
+                class="btn btn-primary"
+                type="submit"
+              >
+                Change Password
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
-    <div
-      class="form-group"
-    >
-      <label>
-        Email
-      </label>
-      <input
-        class="form-control"
-        name="email"
-        value="test@test.net"
-      />
-    </div>
-    <div
-      class="form-group"
-    >
-      <label>
-        Confirm password to make changes:
-      </label>
-      <input
-        class="form-control"
-        name="password"
-        type="password"
-        value=""
-      />
-    </div>
-    <button
-      class="btn btn-primary btn-block mt-4"
-    >
-      Save Changes
-    </button>
-  </form>
+  </div>
 </DocumentFragment>
 `;

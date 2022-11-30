@@ -62,7 +62,14 @@ const ProfileForm = () => {
         evt.preventDefault();
 
         // verify that current password is correct
-
+        const valid = await QuizzlyApi.validate({
+            username: currentUser.username,
+            password: formData.currentPassword
+        })
+        if (!valid) {
+            setFormErrors(["Incorrect current password"]);
+            return;
+        }
 
         // verify that new password and repeated password match
         if (formData.newPassword !== formData.repeatPassword) {
