@@ -8,10 +8,12 @@ const ProfileForm = () => {
     const { currentUser, setCurrentUser } = useContext(UserContext);
 
     const [formData, setFormData] = useState({
-        username: currentUser.username,
         email: currentUser.email,
-        password: ""
+        currentPassword: "",
+        newPassword: "",
+        repeatPassword: ""
     });
+
     const [formErrors, setFormErrors] = useState([]);
     const [saveConfirmed, setSaveConfirmed] = useState(false);
 
@@ -27,18 +29,11 @@ const ProfileForm = () => {
         setSaveConfirmed(false);
     }
 
-    async function handleSubmit(evt) {
-        evt.preventDefault();
-
-        let profileData = {
-            email: formData.email,
-            password: formData.password
-        }
-        let username = formData.username;
+    async function callAPIUpdate(data) {
         let updatedUser;
 
         try {
-            updatedUser = await QuizzlyApi.updateUser(username, profileData);
+            updatedUser = await QuizzlyApi.updateUser(currentUser.username, data);
         } catch (err) {
             setFormErrors(err);
             return;
@@ -46,12 +41,39 @@ const ProfileForm = () => {
 
         setFormData(fd => ({
             ...fd,
-            password: ""
+            currentPassword: "",
+            newPassword: "",
+            repeatPassword: ""
         }));
         setFormErrors([]);
         setSaveConfirmed(true);
-
         setCurrentUser(updatedUser);
+    }
+
+    async function handleDataUpdate(evt) {
+        evt.preventDefault();
+
+        callAPIUpdate({
+            email: formData.email
+        })
+    }
+
+    async function handlePasswordChange(evt) {
+        evt.preventDefault();
+
+        // verify that current password is correct
+
+
+        // verify that new password and repeated password match
+        if (formData.newPassword !== formData.repeatPassword) {
+            setFormErrors(["Repeated password does not match"]);
+            return;
+        }
+
+        // all clear, update password in db
+        callAPIUpdate({
+            password: formData.newPassword
+        })
     }
 
     return (
@@ -63,8 +85,7 @@ const ProfileForm = () => {
                 <div className="card">
                     <div className="card-body text-start">
 
-                        <form onSubmit={handleSubmit}>
-
+                        <form onSubmit={handleDataUpdate}>
                             <div className="form-group">
                                 <label>Email</label>
                                 <input
@@ -77,42 +98,81 @@ const ProfileForm = () => {
                                 />
                             </div>
 
+                            <div className="text-center mt-3">
+                                <button
+                                    className="btn btn-primary"
+                                    type="submit"
+                                >
+                                    Update Email
+                                </button>
+                            </div>
+                        </form>
+
+                        <hr />
+
+                        <form onSubmit={handlePasswordChange}>
                             <div className="form-group">
-                                <label>Confirm password to make changes:</label>
+                                <label>Current Password</label>
                                 <input
-                                    id="password"
+                                    id="currrent-password"
                                     type="password"
-                                    name="password"
+                                    name="currentPassword"
                                     className="form-control"
                                     autoComplete="current-password"
-                                    value={formData.password}
+                                    value={formData.currentPassword}
                                     onChange={handleChange}
                                 />
                             </div>
 
-                            {formErrors.length
-                                ?
-                                <div className="my-1">
-                                    <Alert type="danger" messages={formErrors} />
-                                </div>
-                                : null}
+                            <div className="form-group">
+                                <label>New Password</label>
+                                <input
+                                    id="new-password"
+                                    type="password"
+                                    name="newPassword"
+                                    className="form-control"
+                                    autoComplete="new-password"
+                                    value={formData.newPassword}
+                                    onChange={handleChange}
+                                />
+                            </div>
 
-                            {saveConfirmed
-                                ?
-                                <div className="my-1">
-                                    <Alert type="success" messages={["Updated successfully."]} />
-                                </div>
-                                : null}
+                            <div className="form-group">
+                                <label>Repeat New Password</label>
+                                <input
+                                    id="repeat-password"
+                                    type="password"
+                                    name="repeatPassword"
+                                    className="form-control"
+                                    autoComplete="repeat-password"
+                                    value={formData.repeatPassword}
+                                    onChange={handleChange}
+                                />
+                            </div>
 
                             <div className="text-center mt-3">
                                 <button
                                     className="btn btn-primary"
                                     type="submit"
                                 >
-                                    Save Changes
+                                    Change Password
                                 </button>
                             </div>
                         </form>
+
+                        {formErrors.length
+                            ?
+                            <div className="my-1">
+                                <Alert type="danger" messages={formErrors} />
+                            </div>
+                            : null}
+
+                        {saveConfirmed
+                            ?
+                            <div className="my-1">
+                                <Alert type="success" messages={["Updated successfully."]} />
+                            </div>
+                            : null}
 
                     </div>
                 </div>
