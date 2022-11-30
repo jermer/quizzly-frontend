@@ -53,12 +53,11 @@ const QuizEditor = () => {
      * Handle clicks on "save changes" button in QuizSettingsForm component
      */
 
-    async function saveQuiz(evt, formData) {
-        evt.preventDefault();
-        const { id, ...data } = formData;
+    async function saveQuiz(quizData) {
+        const { id, ...data } = quizData;
 
         // call the quiz update function in the API
-        const question = await QuizzlyApi.updateQuiz(id, data);
+        await QuizzlyApi.updateQuiz(id, data);
 
         // update the quiz locally in state
         setQuiz(qz => ({ ...qz, ...data }));
@@ -68,9 +67,9 @@ const QuizEditor = () => {
      * Handle clicks on "save changes" button in QuestionForm component
      */
 
-    async function saveQuestion(evt, formData) {
-        evt.preventDefault();
-        const { id, ...data } = formData;
+    async function saveQuestion(questionData) {
+        // evt.preventDefault();
+        const { id, ...data } = questionData;
 
         // call the question update function in the API
         const question = await QuizzlyApi.updateQuestion(id, data);

@@ -24,8 +24,9 @@ const DiscoverList = () => {
     if (!quizzes) return <LoadingSpinner />;
 
     return (
-        <div className="QuizList col-md-8 offset-md-2">
+        <div className="DiscoverList col-md-8 offset-md-2">
             <SearchForm handleSearch={search} />
+
             {quizzes.length
                 ? (
                     <div className="QuizList-list">
@@ -41,7 +42,7 @@ const DiscoverList = () => {
                     </div>
                 )
                 : (
-                    <p className="lead">Sorry, no results were found!</p>
+                    <p className="lead">No results found!</p>
                 )
             }
         </div>

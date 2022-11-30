@@ -2,10 +2,7 @@ import UserContext from "./auth/UserContext";
 
 const demoUser = {
     username: "testuser",
-    //   first_name: "testfirst",
-    //   last_name: "testlast",
     email: "test@test.net",
-    //   photo_url: null,
 };
 
 // what about "setCurrentUser"

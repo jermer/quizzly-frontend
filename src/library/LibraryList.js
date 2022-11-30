@@ -86,22 +86,22 @@ const Library = () => {
     if (!currentUser || !quizzes) return <LoadingSpinner />;
 
     return (
-        <div>
+        <div className="LibraryList col-md-8 offset-md-2">
             <h3> User Library: {currentUser.username} </h3>
-
-            <SearchForm handleSearch={search} />
-
-            <button
-                className="btn btn-warning"
-                onClick={handleNew}
-            >
-                New Quiz
-            </button>
-
-            {/* <QuizList
-                filters={{ creator: currentUser.username }}
-                cardAction={'edit'}
-            /> */}
+            <div className="row">
+                <div className="col-10">
+                    <SearchForm handleSearch={search} />
+                </div>
+                <div className="col my-3">
+                    <button
+                        className="btn btn-success"
+                        onClick={handleNew}
+                    >
+                        <i class="fa-solid fa-circle-plus me-2"></i>
+                        New Quiz
+                    </button>
+                </div>
+            </div>
 
             {quizzes.length
                 ? (
@@ -119,7 +119,7 @@ const Library = () => {
                     </div>
                 )
                 : (
-                    <p className="lead">Sorry, no results were found!</p>
+                    <p className="lead">No results found!</p>
                 )
             }
 
