@@ -29,7 +29,7 @@ const DiscoverList = () => {
 
             {quizzes.length
                 ? (
-                    <div className="QuizList-list">
+                    <div className="QuizList-list row row-cols-3 g-3">
                         {quizzes.map(q => (
                             <DiscoverCard
                                 key={q.id}

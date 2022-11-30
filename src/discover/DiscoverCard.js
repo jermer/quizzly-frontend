@@ -5,7 +5,7 @@ import "./DiscoverCard.css";
 const DiscoverCard = ({ id, title, description, creator }) => {
     return (
         <Link
-            className="DiscoverCard card"
+            className="DiscoverCard card mx-2"
             to={`/player/${id}`}
         >
             <div className="card-body">

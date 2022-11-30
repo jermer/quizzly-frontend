@@ -97,7 +97,7 @@ const Library = () => {
                         className="btn btn-success"
                         onClick={handleNew}
                     >
-                        <i class="fa-solid fa-circle-plus me-2"></i>
+                        <i className="fa-solid fa-circle-plus me-2"></i>
                         New Quiz
                     </button>
                 </div>
@@ -105,7 +105,7 @@ const Library = () => {
 
             {quizzes.length
                 ? (
-                    <div className="QuizList-list">
+                    <div className="QuizList-list row row-cols-3 g-3">
                         {quizzes.map(q => (
                             <LibraryCard
                                 key={q.id}

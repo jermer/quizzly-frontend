@@ -39,7 +39,7 @@ const LibraryCard = ({ id, title, description, creator, handleDelete }) => {
                     </Link>
 
                     <button
-                        className="btn btn-small btn-danger"
+                        className="btn btn-small btn-danger ms-1"
                         onClick={handleDelete}
                     >
                         <span>
