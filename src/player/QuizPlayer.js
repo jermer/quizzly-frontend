@@ -13,7 +13,7 @@ import { shuffleArray } from "../helpers/shuffleArray";
 
 const QuizPlayer = () => {
     const { id } = useParams();
-    const { currentUser } = useContext(UserContext);
+    const { currentUser, setCurrentUser } = useContext(UserContext);
 
     console.debug("Quiz Player", "id =", id);
 
@@ -67,11 +67,20 @@ const QuizPlayer = () => {
 
         if (nextQuestionIdx >= quiz.questions.length) {
             // user has answered the last question
-            await QuizzlyApi.recordScore(
+            // update score report in db
+            const newScoreReport = await QuizzlyApi.recordScore(
                 currentUser.username,
                 quiz.id,
                 numCorrect
-            )
+            );
+
+            // update the user in state
+            // filter for only scores that are not for the current quiz
+            let otherScores = currentUser.scores.filter(s => s.quizId !== quiz.id);
+            setCurrentUser(u => ({
+                ...u,
+                scores: [...otherScores, newScoreReport]
+            }));
         }
 
         // update state variables for the new question

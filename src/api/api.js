@@ -136,7 +136,8 @@ class QuizzlyApi {
     /** Record a user's score on a particular quiz */
 
     static async recordScore(username, quizId, score) {
-        await this.request(`users/${username}/quizzes/${quizId}`, { score }, "post");
+        let res = await this.request(`users/${username}/quizzes/${quizId}`, { score }, "post");
+        return res.score;
     }
 
 }
