@@ -86,7 +86,7 @@ const Library = () => {
     if (!currentUser || !quizzes) return <LoadingSpinner />;
 
     return (
-        <div className="LibraryList col-md-8 offset-md-2">
+        <div className="LibraryList col-md-8 offset-md-2 pt-3">
             <h3> User Library: {currentUser.username} </h3>
             <div className="row">
                 <div className="col-10">
@@ -118,9 +118,8 @@ const Library = () => {
                         ))}
                     </div>
                 )
-                : (
-                    <p className="lead">No results found!</p>
-                )
+                :
+                (<p className="lead">No results found!</p>)
             }
 
         </div>
