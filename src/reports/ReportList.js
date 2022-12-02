@@ -23,6 +23,7 @@ const ReportList = () => {
                         <tbody>
                             {currentUser.scores.map(s => (
                                 <ReportCard
+                                    key={s.quizId}
                                     title={s.title}
                                     lastScore={s.lastScore}
                                     bestScore={s.bestScore}

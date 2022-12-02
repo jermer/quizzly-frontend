@@ -10,24 +10,27 @@ const Navigation = ({ logout }) => {
 
     function loggedInNav() {
         return (
-            <ul className="navbar-nav ml-auto">
-                <li className="nav-item mr-4">
+            <ul className="navbar-nav">
+                <li className="nav-item me-2">
                     <NavLink className="nav-link" to="/discover">
+                        <i className="fa-solid fa-compass me-1"></i>
                         Discover
                     </NavLink>
                 </li>
-                <li className="nav-item mr-4">
+                <li className="nav-item me-2">
                     <NavLink className="nav-link" to="/creator/library">
+                        <i className="fa-solid fa-pen-to-square me-1"></i>
                         Library
                     </NavLink>
                 </li>
-                <li className="nav-item mr-4">
+                <li className="nav-item me-2">
                     <NavLink className="nav-link" to="/reports">
+                        <i className="fa-solid fa-square-poll-vertical me-1"></i>
                         Reports
                     </NavLink>
                 </li>
 
-                <li className="nav-item dropdown mr-4">
+                <li className="nav-item dropdown me-2">
                     <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <i className="fa-solid fa-user"></i>
                     </a>
@@ -56,13 +59,13 @@ const Navigation = ({ logout }) => {
 
     function loggedOutNav() {
         return (
-            <ul className="navbar-nav ml-auto">
-                <li className="nav-item mr-4">
+            <ul className="navbar-nav">
+                <li className="nav-item">
                     <NavLink className="nav-link" to="/login">
                         Login
                     </NavLink>
                 </li>
-                <li className="nav-item mr-4">
+                <li className="nav-item">
                     <NavLink className="nav-link" to="/signup">
                         Sign Up
                     </NavLink>
@@ -73,7 +76,7 @@ const Navigation = ({ logout }) => {
 
     return (
         <nav className="Navigation navbar navbar-expand-md">
-            <Link className="navbar-brand" to="/">
+            <Link className="navbar-brand ms-3 me-5 fw-bold" to="/">
                 Quizzly
             </Link>
             {currentUser ? loggedInNav() : loggedOutNav()}
