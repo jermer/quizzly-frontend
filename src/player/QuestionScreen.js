@@ -2,10 +2,13 @@ import { useEffect, useState } from "react";
 
 import { shuffleArray } from "../helpers/shuffleArray";
 
-const QuestionScreen = ({ question, nextQuestion }) => {
+const QuestionScreen = ({ question, recordCorrect, nextQuestion }) => {
 
     // holds a randomized array of answer choices
     const [answers, setAnswers] = useState([]);
+
+    // holds an integer for the index of the correct answer
+    const [correctIdx, setCorrectIdx] = useState(null);
 
     // holds a flag to indicate whether the user has
     // selected one of the answer choices yet
@@ -13,13 +16,20 @@ const QuestionScreen = ({ question, nextQuestion }) => {
 
     useEffect(() => {
         // set up and shuffle the answer choices
-        setAnswers(
-            shuffleArray([
-                question.rightA,
-                question.wrongA1,
-                question.wrongA2,
-                question.wrongA3
-            ]))
+        const ansArray = shuffleArray([
+            question.rightA,
+            question.wrongA1,
+            question.wrongA2,
+            question.wrongA3
+        ]);
+
+        // update the answer array in state
+        setAnswers(ansArray);
+
+        // remember the index of the correct answer
+        setCorrectIdx(
+            ansArray.findIndex(a => (a === question.rightA))
+        );
 
         // this question has not yet been answered
         setDone(false);
@@ -30,13 +40,14 @@ const QuestionScreen = ({ question, nextQuestion }) => {
     function answerClick(evt) {
         evt.preventDefault();
 
-        const id = evt.target.closest('button').id;
-        console.log("Click on button", id);
+        const id = +evt.target.closest('button').id;
+        console.debug("Quiz question click on button", id);
 
-        if (answers[id] === question.rightA) {
-            console.log("CORRECT!");
+        if (id === correctIdx) {
+            console.debug("Correct answer");
+            recordCorrect();
         } else {
-            console.log("INCORRECT");
+            console.debug("Incorrect answer");
         }
         setDone(true);
     }
@@ -49,45 +60,109 @@ const QuestionScreen = ({ question, nextQuestion }) => {
             </div>
 
             <div className="question-answer-area d-grid col-4 mx-auto">
-                <button
-                    id="0"
-                    className="btn btn-danger btn-lg text-start mt-2"
-                    onClick={answerClick}
-                    disabled={done}
-                >
-                    {/* <i className="fa-solid fa-square me-2"></i> {answers[0]} */}
-                    <i className="fa-solid fa-circle-chevron-right me-2"></i> {answers[0]}
-                </button>
+                <div className="row">
+                    <div className="d-grid col">
+                        <button
+                            id="0"
+                            className="btn btn-danger btn-lg text-start mt-2"
+                            onClick={answerClick}
+                            disabled={done}
+                        >
+                            {/* <i className="fa-solid fa-square me-2"></i> {answers[0]} */}
+                            <i className="fa-solid fa-circle-chevron-right me-2"></i> {answers[0]}
+                        </button>
+                    </div>
+                    <div className="col-1 my-auto">
+                        {done
+                            ? (
+                                correctIdx === 0
+                                    ?
+                                    <i className="fa-solid fa-circle-check text-success"></i>
+                                    :
+                                    <i className="fa-solid fa-circle-xmark text-danger"></i>
+                            )
+                            : null
+                        }
+                    </div>
+                </div>
 
-                <button
-                    id="1"
-                    className="btn btn-warning btn-lg text-start mt-2"
-                    onClick={answerClick}
-                    disabled={done}
-                >
-                    {/* <i className="fa-solid fa-diamond me-2"></i> {answers[1]} */}
-                    <i className="fa-solid fa-circle-chevron-right me-2"></i> {answers[1]}
-                </button>
+                <div className="row">
+                    <div className="d-grid col">
+                        <button
+                            id="1"
+                            className="btn btn-warning btn-lg text-start mt-2"
+                            onClick={answerClick}
+                            disabled={done}
+                        >
+                            {/* <i className="fa-solid fa-diamond me-2"></i> {answers[1]} */}
+                            <i className="fa-solid fa-circle-chevron-right me-2"></i> {answers[1]}
+                        </button>
+                    </div>
+                    <div className="col-1 my-auto">
+                        {done
+                            ? (
+                                correctIdx === 1
+                                    ?
+                                    <i className="fa-solid fa-circle-check text-success"></i>
+                                    :
+                                    <i className="fa-solid fa-circle-xmark text-danger"></i>
+                            )
+                            : null
+                        }
+                    </div>
+                </div>
 
-                <button
-                    id="2"
-                    className="btn btn-success btn-lg text-start mt-2"
-                    onClick={answerClick}
-                    disabled={done}
-                >
-                    {/* <i className="fa-solid fa-play fa-rotate-270 me-2"></i> {answers[2]} */}
-                    <i className="fa-solid fa-circle-chevron-right me-2"></i> {answers[2]}
-                </button>
+                <div className="row">
+                    <div className="d-grid col">
+                        <button
+                            id="2"
+                            className="btn btn-success btn-lg text-start mt-2"
+                            onClick={answerClick}
+                            disabled={done}
+                        >
+                            {/* <i className="fa-solid fa-play fa-rotate-270 me-2"></i> {answers[2]} */}
+                            <i className="fa-solid fa-circle-chevron-right me-2"></i> {answers[2]}
+                        </button>
+                    </div>
+                    <div className="col-1 my-auto">
+                        {done
+                            ? (
+                                correctIdx === 2
+                                    ?
+                                    <i className="fa-solid fa-circle-check text-success"></i>
+                                    :
+                                    <i className="fa-solid fa-circle-xmark text-danger"></i>
+                            )
+                            : null
+                        }
+                    </div>
+                </div>
 
-                <button
-                    id="3"
-                    className="btn btn-primary btn-lg text-start mt-2"
-                    onClick={answerClick}
-                    disabled={done}
-                >
-                    {/* <i className="fa-solid fa-circle me-2"></i> {answers[3]} */}
-                    <i className="fa-solid fa-circle-chevron-right me-2"></i> {answers[3]}
-                </button>
+                <div className="row">
+                    <div className="d-grid col">
+                        <button
+                            id="3"
+                            className="btn btn-primary btn-lg text-start mt-2"
+                            onClick={answerClick}
+                            disabled={done}
+                        >
+                            {/* <i className="fa-solid fa-circle me-2"></i> {answers[3]} */}
+                            <i className="fa-solid fa-circle-chevron-right me-2"></i> {answers[3]}
+                        </button>
+                    </div>
+                    <div className="col-1 my-auto">
+                        {done
+                            ? (
+                                correctIdx === 3
+                                    ?
+                                    <i className="fa-solid fa-circle-check text-success"></i>
+                                    :
+                                    <i className="fa-solid fa-circle-xmark text-danger"></i>
+                            )
+                            : null
+                        }
+                    </div>
+                </div>
             </div>
 
             <div className="question-next-button-area mt-4">
@@ -97,11 +172,11 @@ const QuestionScreen = ({ question, nextQuestion }) => {
                     onClick={nextQuestion}
                     disabled={!done}
                 >
-                    Next Question <i className="fa-solid fa-forward ms-2"></i>
+                    Next <i className="fa-solid fa-forward ms-2"></i>
                 </button>
             </div>
 
-        </div>
+        </div >
     )
 }
 

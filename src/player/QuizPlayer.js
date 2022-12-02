@@ -1,10 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 
 import QuizzlyApi from "../api/api";
-import QuestionScreen from "./QuestionScreen";
+import UserContext from "../auth/UserContext";
 
 import LoadingSpinner from "../common/LoadingSpinner";
+import QuestionScreen from "./QuestionScreen";
 import IntroScreen from "./IntroScreen";
 import OutroScreen from "./OutroScreen";
 
@@ -12,6 +13,7 @@ import { shuffleArray } from "../helpers/shuffleArray";
 
 const QuizPlayer = () => {
     const { id } = useParams();
+    const { currentUser } = useContext(UserContext);
 
     console.debug("Quiz Player", "id =", id);
 
@@ -27,6 +29,9 @@ const QuizPlayer = () => {
 
     // holds the current question object
     const [currQuestion, setCurrQuestion] = useState(null);
+
+    // holds an integer for the number of correct answers
+    const [numCorrect, setNumCorrect] = useState(0);
 
     // update quiz data in state when id changes
     useEffect(() => {
@@ -48,11 +53,26 @@ const QuizPlayer = () => {
         // set question state to the first question
         setCurrQuestionIdx(0);
         setCurrQuestion(questions[0]);
+        setNumCorrect(0);
     }
 
-    function nextQuestion() {
+    function recordCorrect() {
+        // increment number of correct answers
+        setNumCorrect(n => (n + 1));
+    }
+
+    async function nextQuestion() {
         // increment the question index
         const nextQuestionIdx = currQuestionIdx + 1;
+
+        if (nextQuestionIdx >= quiz.questions.length) {
+            // user has answered the last question
+            await QuizzlyApi.recordScore(
+                currentUser.username,
+                quiz.id,
+                numCorrect
+            )
+        }
 
         // update state variables for the new question
         setCurrQuestionIdx(nextQuestionIdx);
@@ -79,6 +99,8 @@ const QuizPlayer = () => {
                 return (
                     <OutroScreen
                         title={quiz.title}
+                        numCorrect={numCorrect}
+                        numQuestions={quiz.questions.length}
                     />
                 )
             }
@@ -87,6 +109,7 @@ const QuizPlayer = () => {
             return (
                 <QuestionScreen
                     question={currQuestion}
+                    recordCorrect={recordCorrect}
                     nextQuestion={nextQuestion}
                 />
             )
