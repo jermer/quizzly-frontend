@@ -1,70 +1,42 @@
-# Getting Started with Create React App
+# Quizzly
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is the git repo for the *front end* of the Quizzly app. The app's back end can be found at this repo [quizzly-backend](https://github.com/jermer/quizzly-backend).
 
-## Available Scripts
+Quizzly was created by [Jason Ermer](https://www.linkedin.com/in/jasonermer/). The project was inspired by and emulates [Kahoot!](https://kahoot.com/) and was completed as part of the [Springboard](https://www.springboard.com) Software Engineering Career Track.
 
-In the project directory, you can run:
+The logo is [artificial intelligence](https://game-icons.net/1x1/lord-berandas/artificial-intelligence.html) by Lord Berandas, available from [game-icons.net](https://game-icons.net/) and used under a [CC-BY 3.0](https://creativecommons.org/licenses/by/3.0/) license.
 
-### `npm start`
+### Overview
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+*Kahoot!* is an online platform for creating and playing learning games ([website](https://kahoot.com/schools/how-it-works/), [wiki](https://en.wikipedia.org/wiki/Kahoot!)). Creators, typically teachers, register with Kahoot! and build multiple-choice quizzes through a web interface. Players, typically students, access Kahoot! quizzes via a web browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+This project, *Quizzly*, implements a subset of Kahoot! functionality.
 
-### `npm test`
+The quiz-maker interface allows users to create, edit, and publish multiple-choice quizzes. The quiz-taker interface allows users to browse published quizzes, take quizzes, and keep a log of their quiz scores.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Tech Stack
 
-### `npm run build`
+Quizzly has a React front end (component hierarchy shown below), and a Node/Express [backend](https://github.com/jermer/quizzly-backend) with a Postgres database.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<img src="./quizzly_component_hierarchy.png" width="600"/>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Data Security
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Very little user data will be stored apart from username, email, and password. However, given that my platform caters to teachers and students, I must look into data security considerations associated with students under 13 years of age, in compliance with the Children’s Online Privacy Protection Act ([COPPA](https://www.ftc.gov/business-guidance/resources/childrens-online-privacy-protection-rule-six-step-compliance-plan-your-business)).
 
-### `npm run eject`
+### Future Work
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Areas of future front end development include:
+- Auto-save in quiz editor
+- Enable question navigation panel to scroll separately from editor panel
+- Second prompt before quiz deletion
+- Allow thumbnail images for quizzes
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Installation
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+In the project directory:
+- Execute `npm install` to install packages and dependencies.
+- Execute `psql < quizzly.sql` to create, set-up, and seed the production database `quizzly`, and the testing database `quizzly-test`.
+- To launch the front end, execute `npm start`.
+- To run tests, execute `npm test`.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
