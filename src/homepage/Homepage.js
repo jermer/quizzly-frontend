@@ -21,7 +21,7 @@ const Homepage = () => {
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body">
-                            <p><i>Quizzly</i> was created by <a href="https://www.linkedin.com/in/jasonermer/" target="_blank" rel="noreferrer nofollow">Jason Ermer</a>. The documentation and source code are available on <a href="https://github.com/jermer/quizzly" target="_blank" rel="noreferrer nofollow">GitHub</a>.</p>
+                            <p><i>Quizzly</i> was created by <a href="https://www.linkedin.com/in/jasonermer/" target="_blank" rel="noreferrer nofollow">Jason Ermer</a>. The documentation and source code are available on GitHub (<a href="https://github.com/jermer/quizzly-frontend" target="_blank" rel="noreferrer nofollow">front-end</a>, <a href="https://github.com/jermer/quizzly-backend" target="_blank" rel="noreferrer nofollow">back-end</a>).</p>
 
                             <p>The project was inspired by and emulates <a href="https://kahoot.com/" target="_blank" rel="noreferrer nofollow">Kahoot!</a> and was completed as part of the <a href="https://www.springboard.com/" target="_blank" rel="noreferrer nofollow">Springboard</a> Software Engineering Career Track.</p>
 

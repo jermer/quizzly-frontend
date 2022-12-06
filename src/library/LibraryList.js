@@ -20,34 +20,15 @@ const Library = () => {
     const { currentUser } = useContext(UserContext);
 
     const [quizzes, setQuizzes] = useState(null);
-    const [searchFields, setSearchFields] = useState({});
-
-    // console.log(">>>", currentUser.username);
 
     useEffect(function getQuizzesOnMount() {
-
-        // async function fetchQuizzes() {
-        //     // let quizzes = await QuizzlyApi.getQuizzes(searchFields);
-        //     let quizzes = await QuizzlyApi.getQuizzes({
-        //         creator: currentUser.username
-        //     });
-        //     setQuizzes(quizzes);
-        // }
-
         if (currentUser) {
-            // setSearchFields(filters);
-            // setSearchFields({
-            //     creator: currentUser.username
-            // })
-            // fetchQuizzes();
             search();
         }
 
     }, [currentUser]);
 
     async function search(searchString) {
-        // const newSearchFields = { ...searchFields, searchString };
-        // setSearchFields(newSearchFields);
         let quizzes = await QuizzlyApi.getQuizzes({
             creator: currentUser.username,
             searchString

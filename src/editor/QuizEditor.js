@@ -72,7 +72,7 @@ const QuizEditor = () => {
         const { id, ...data } = questionData;
 
         // call the question update function in the API
-        const question = await QuizzlyApi.updateQuestion(id, data);
+        await QuizzlyApi.updateQuestion(id, data);
 
         // update the question locally, inside the quiz state
         setQuiz(qz => ({
@@ -161,7 +161,7 @@ const QuizEditor = () => {
         console.debug("Editor: delete question, id =", id);
 
         // find the target id in the question array 
-        let idx = quiz.questions.findIndex(q => q.id === id);
+        // let idx = quiz.questions.findIndex(q => q.id === id);
 
         // delete the question in the db
         await QuizzlyApi.deleteQuestion(id);

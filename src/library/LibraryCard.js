@@ -15,14 +15,10 @@ const LibraryCard = ({ id, title, description, creator, handleDelete }) => {
         <div
             id={id}
             className="LibraryCard card"
-        // to={`/creator/${id}`}
         >
             <div className="card-body">
                 <h5 className="card-title">
                     {title}
-                    {/* {logoUrl && <img src={logoUrl}
-                        alt={name}
-                        className="float-right ml-5" />} */}
                 </h5>
 
                 <div className="card-text small">
@@ -33,7 +29,7 @@ const LibraryCard = ({ id, title, description, creator, handleDelete }) => {
                 <div>
                     <Link
                         className="btn btn-small btn-primary"
-                        to={`/creator/${id}`}
+                        to={`/editor/${id}`}
                     >
                         <i className="fa-solid fa-pen-to-square me-1"></i> Edit
                     </Link>

@@ -15,7 +15,7 @@ const SignupForm = ({ signup }) => {
     async function handleSubmit(evt) {
         evt.preventDefault();
 
-        console.log(">>> FORM SUBMIT", formData);
+        // console.log(">>> FORM SUBMIT", formData);
 
         const result = await signup(formData);
         if (result.success) {

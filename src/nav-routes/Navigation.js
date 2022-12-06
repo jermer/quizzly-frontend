@@ -18,7 +18,7 @@ const Navigation = ({ logout }) => {
                     </NavLink>
                 </li>
                 <li className="nav-item me-2">
-                    <NavLink className="nav-link" to="/creator/library">
+                    <NavLink className="nav-link" to="/editor/library">
                         <i className="fa-solid fa-pen-to-square me-1"></i>
                         Library
                     </NavLink>

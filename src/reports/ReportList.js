@@ -3,6 +3,14 @@ import { useContext } from "react";
 import UserContext from "../auth/UserContext";
 import ReportCard from "./ReportCard";
 
+/** Displays a list of score reports.
+ * This list includes any quizzes that the user has played,
+ * the most recent score and the high score.
+ * 
+ * This is all rendered in a table with QuizCard
+ * components rendering individual rows of the table. 
+ */
+
 const ReportList = () => {
     const { currentUser } = useContext(UserContext);
 

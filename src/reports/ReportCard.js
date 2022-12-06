@@ -1,8 +1,6 @@
-import { Link } from "react-router-dom";
 
-// import "./ReportCard.css";
-
-/** 
+/** Renders an individual score report as a row
+ * in the table defined by ReportList.
  */
 
 const ReportCard = ({ title, lastScore, bestScore, numQuestions }) => {

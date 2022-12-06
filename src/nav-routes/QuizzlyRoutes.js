@@ -1,4 +1,3 @@
-import { useContext } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 
 import Homepage from "../homepage/Homepage";
@@ -15,6 +14,12 @@ import QuizPlayer from "../player/QuizPlayer";
 
 import ReportList from "../reports/ReportList";
 
+/** Routes for Quizzly app
+ * 
+ * Accepts props for login and signup functions,
+ * passed down from App.
+ */
+
 const QuizzlyRoutes = ({ login, signup }) => {
 
     return (
@@ -29,9 +34,9 @@ const QuizzlyRoutes = ({ login, signup }) => {
 
             <Route path="/player/:id" element={<QuizPlayer />} />
 
-            <Route path="/creator/library" element={<LibraryList />} />
+            <Route path="/editor/library" element={<LibraryList />} />
 
-            <Route path="/creator/:id" element={<QuizEditor />} />
+            <Route path="/editor/:id" element={<QuizEditor />} />
 
             <Route path="/reports" element={<ReportList />} />
 
